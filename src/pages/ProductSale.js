@@ -1,12 +1,13 @@
 import Header from '../components/Header';
 
 const endpoint = 'http://localhost:3000/product';
-const ProductPage = async () => {
+const ProductSale = async () => {
     const response = await fetch(endpoint);
     const product = await response.json();
+    console.log(product);
     return `
-        ${Header()}
+        ${product.map(item => `<h1>${item.name}</h1>`)}
     `;
 };
 
-export default ProductPage;
+export default ProductSale;

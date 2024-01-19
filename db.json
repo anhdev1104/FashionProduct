@@ -2,7 +2,9 @@
     "product": [
         {
             "id": 1,
-            "name": "Sản phẩm 1"
+            "name": "Sản phẩm 1",
+            "description": "lorem",
+            "images": ""
         }
     ]
 }
