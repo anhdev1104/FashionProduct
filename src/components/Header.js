@@ -1,7 +1,7 @@
 const Header = () => {
-    return `<header class="w-full bg-primary border-b border-solid border-[#e3ddbb] py-[1px]">
+    return `<header class="w-full bg-primary border-b border-solid border-[#e3ddbb] py-[1px] fixed top-0 left-0 right-0 z-10">
     <section class="w-full max-w-[1350px] mx-auto px-4 flex justify-between items-center gap-5">
-        <a href="/home" class="block">
+        <a href="#" class="block">
             <img src="./src/assets/images/logo.svg" alt="">
         </a>
         <div class="flex-1">

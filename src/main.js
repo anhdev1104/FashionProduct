@@ -8,7 +8,6 @@ const app = document.querySelector('#app');
 
 router
     .on('/', () => render(app, HomePage))
-    .on('/home', () => render(app, HomePage))
     .on('/product', () => render(app, ProductPage))
     .on('/productsale', () => render(app, ProductSale))
     .resolve();

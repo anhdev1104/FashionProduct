@@ -7,4 +7,8 @@
         font-family: "Roboto", sans-serif;
         scroll-behavior: smooth;
     }
+
+    body {
+        background-color: #f6f3e4;
+    }
 }

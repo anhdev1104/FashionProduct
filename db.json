@@ -1,10 +1,278 @@
 {
+    "categories": [
+        {
+            "id": 1,
+            "name": "sản phẩm mới"
+        },
+        {
+            "id": 2,
+            "name": "sản phẩm giảm giá"
+        },
+        {
+            "id": 3,
+            "name": "phụ kiện"
+        },
+        {
+            "id": 4,
+            "name": "bộ sưu tập"
+        },
+        {
+            "id": 5,
+            "name": "trình diễn thời trang"
+        }
+    ],
     "product": [
         {
             "id": 1,
-            "name": "Sản phẩm 1",
-            "description": "lorem",
-            "images": ""
+            "name": "Black and Pink Midi Tweed Dress",
+            "images": ["product1.jpg", "product1-2.jpg"],
+            "price": 1998000,
+            "priceOrigin": 2250000,
+            "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 25
+                },
+                {
+                    "label": "M",
+                    "quantity": 79
+                },
+                {
+                    "label": "L",
+                    "quantity": 42
+                },
+                {
+                    "label": "XL",
+                    "quantity": 21
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 2,
+            "name": "V-neck Mini Velvet Dress",
+            "images": ["product2.jpg", "product2-2.jpg"],
+            "price": 1248000,
+            "priceOrigin": 1890000,
+            "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 35
+                },
+                {
+                    "label": "M",
+                    "quantity": 51
+                },
+                {
+                    "label": "L",
+                    "quantity": 62
+                },
+                {
+                    "label": "XL",
+                    "quantity": 25
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 3,
+            "name": "Black With Yellow Poppy Midi Voile Dress",
+            "images": ["product3.jpg", "product3-2.jpg"],
+            "price": 2797000,
+            "priceOrigin": 3496000,
+            "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 45
+                },
+                {
+                    "label": "M",
+                    "quantity": 15
+                },
+                {
+                    "label": "L",
+                    "quantity": 69
+                },
+                {
+                    "label": "XL",
+                    "quantity": 11
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 4,
+            "name": "White Poppy Sleeveless Midi Voile Dress",
+            "images": ["product4.jpg", "product4-2.jpg"],
+            "price": 2317000,
+            "priceOrigin": 2896000,
+            "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 15
+                },
+                {
+                    "label": "M",
+                    "quantity": 45
+                },
+                {
+                    "label": "L",
+                    "quantity": 59
+                },
+                {
+                    "label": "XL",
+                    "quantity": 31
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 5,
+            "name": "White Poppy Off-shoulder Midi Voile Dress",
+            "images": ["product5.jpg", "product5-2.jpg"],
+            "price": 2317000,
+            "priceOrigin": 2896000,
+            "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 35
+                },
+                {
+                    "label": "M",
+                    "quantity": 55
+                },
+                {
+                    "label": "L",
+                    "quantity": 59
+                },
+                {
+                    "label": "XL",
+                    "quantity": 31
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 6,
+            "name": "Black Cherry Blossom Midi Voile Dress",
+            "images": ["product6.jpg", "product6-2.jpg"],
+            "price": 2397000,
+            "priceOrigin": 2996000,
+            "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình  nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 25
+                },
+                {
+                    "label": "M",
+                    "quantity": 85
+                },
+                {
+                    "label": "L",
+                    "quantity": 37
+                },
+                {
+                    "label": "XL",
+                    "quantity": 32
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 7,
+            "name": "White Poppy Midi Voile Dress",
+            "images": ["product11.jpg", "product11-2.jpg"],
+            "price": 2797000,
+            "priceOrigin": 3495000,
+            "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình  nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 45
+                },
+                {
+                    "label": "M",
+                    "quantity": 83
+                },
+                {
+                    "label": "L",
+                    "quantity": 47
+                },
+                {
+                    "label": "XL",
+                    "quantity": 22
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 8,
+            "name": "Light Murrey Poppy Midi Voile Dress",
+            "images": ["product7.jpg", "product7-2.jpg"],
+            "price": 2637000,
+            "priceOrigin": 3296000,
+            "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình  nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 25
+                },
+                {
+                    "label": "M",
+                    "quantity": 85
+                },
+                {
+                    "label": "L",
+                    "quantity": 37
+                },
+                {
+                    "label": "XL",
+                    "quantity": 32
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
+        },
+        {
+            "id": 9,
+            "name": "Multicolor Polka Dots Top",
+            "images": ["product12.jpg", "product12-2.jpg"],
+            "price": 1037000,
+            "priceOrigin": 1296000,
+            "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 35
+                },
+                {
+                    "label": "M",
+                    "quantity": 35
+                },
+                {
+                    "label": "L",
+                    "quantity": 31
+                },
+                {
+                    "label": "XL",
+                    "quantity": 12
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 1
         }
     ]
 }
