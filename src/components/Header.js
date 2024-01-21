@@ -19,7 +19,7 @@ const Header = () => {
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
-            <div>
+            <nav>
                 <ul class="flex justify-end items-center gap-8 font-medium">
                     <li>
                         <a href="/product"
@@ -48,7 +48,7 @@ const Header = () => {
                             THỜI TRANG</a>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </div>
     </section>
 </header>`;

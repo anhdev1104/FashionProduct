@@ -1,4 +1,16 @@
 {
+    "slider": ["banner4.webp", "banner3.webp", "banner2.webp"],
+    "instagram": [
+        "insta1.webp",
+        "insta2.webp",
+        "insta3.webp",
+        "insta4.webp",
+        "insta5.webp",
+        "insta6.webp",
+        "insta7.webp",
+        "insta8.webp",
+        "insta9.webp"
+    ],
     "categories": [
         {
             "id": 1,
@@ -273,6 +285,34 @@
             ],
             "isActive": 1,
             "categoryID": 1
+        },
+        {
+            "id": 10,
+            "name": "Ochre Midi Woven Dress With Flower",
+            "images": ["product-sale1.jpg", "product-sale1-2.jpg"],
+            "price": 899000,
+            "priceOrigin": 2496000,
+            "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+            "size": [
+                {
+                    "label": "S",
+                    "quantity": 11
+                },
+                {
+                    "label": "M",
+                    "quantity": 13
+                },
+                {
+                    "label": "L",
+                    "quantity": 19
+                },
+                {
+                    "label": "XL",
+                    "quantity": 7
+                }
+            ],
+            "isActive": 1,
+            "categoryID": 2
         }
     ]
 }

@@ -70,7 +70,7 @@ const Footer = () => {
                 <img src="https://sixdo.vn/images/ic-tictok.svg" alt="" class="cursor-pointer w-[30px] h-[30px]">
                 <img src="https://sixdo.vn/images/ic-shopee.png" alt="" class="cursor-pointer w-[30px] h-[30px]">
             </div>
-            <img src="https://sixdo.vn/images/Thongbaobocongthuong.svg" alt="" class="mt-5">
+            <img src="https://sixdo.vn/images/Thongbaobocongthuong.svg" alt="" class="mt-5 mx-auto">
         </div>
     </section>
     <section class="border-t border-[#e3ddbb] font-light text-center pt-5 mb-[50px]">©2023 This template is made with by Bui Hoang Anh</section>
