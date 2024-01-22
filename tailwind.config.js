@@ -6,6 +6,7 @@ export default {
             colors: {
                 primary: '#f6f3e4',
                 second: '#212121',
+                borderColor: '#e3ddbb',
             },
         },
     },
