@@ -4,7 +4,7 @@ import ProductList from '../components/ProductList';
 import Footer from '../components/Footer';
 
 const endpoint = 'http://localhost:3000/product';
-const ProductPage = async () => {
+const AccessoryPage = async () => {
     const response = await fetch(endpoint);
     const product = await response.json();
     return `
@@ -20,7 +20,7 @@ ${Header()}
         <div class="flex-grow pl-[30px]">
             <div class="border-b border-borderColor mb-5 flex items-center justify-between pb-[5px]">
                 <div class="gap-5 flex items-center">
-                    <p class="text-second font-bold uppercase">SẢN PHẨM MỚI</p>
+                    <p class="text-second font-bold uppercase">PHỤ KIỆN</p>
                     <span class="font-light text-gray-500">(486 Item)</span>
                 </div>
                 <div class="cursor-pointer gap-3 font-bold items-center flex">
@@ -28,10 +28,10 @@ ${Header()}
                     <span>SORT</span>
                 </div>
             </div>
-            ${await ProductList(1)}
+            ${await ProductList(3)}
     </section>
 </main>
 ${Footer()}
 `;
 };
-export default ProductPage;
+export default AccessoryPage;

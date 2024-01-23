@@ -1,8 +1,8 @@
 const Header = () => {
     return `<header class="w-full bg-primary border-b border-solid border-[#e3ddbb] py-[1px] fixed top-0 left-0 right-0 z-10">
     <section class="w-full max-w-[1350px] mx-auto px-4 flex justify-between items-center gap-5">
-        <a href="#" class="block">
-            <img src="./src/assets/images/logo.svg" alt="">
+        <a href="/" class="block">
+            <img src="../src/assets/images/logo.svg" alt="">
         </a>
         <div class="flex-1">
             <div class="flex justify-end items-center gap-8 mt-1">
@@ -32,17 +32,17 @@ const Header = () => {
                             PHẨM GIẢM GIÁ</a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="/accessory"
                             class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">PHỤ
                             KIỆN</a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="/collection"
                             class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">BỘ
                             SƯU TẬP</a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="/showFashion"
                             class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">TRÌNH
                             DIỄN
                             THỜI TRANG</a>

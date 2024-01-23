@@ -7,13 +7,13 @@ const render = async (content, target, ...events) => {
 };
 
 // Chặn hành vi mặc định của liên kết
-document.addEventListener('click', function (e) {
-    const targetElement = e.target;
+// document.addEventListener('click', function (e) {
+//     const targetElement = e.target;
 
-    if (targetElement.tagName === 'A') {
-        e.preventDefault();
-        router.navigate(targetElement.getAttribute('href'));
-    }
-});
+//     if (targetElement.tagName === 'A') {
+//         e.preventDefault();
+//         router.navigate(targetElement.getAttribute('href'));
+//     }
+// });
 
 export { render, router };

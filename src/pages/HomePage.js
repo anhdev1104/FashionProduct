@@ -25,7 +25,7 @@ ${Header()}
                 ${products
                     .map(product => {
                         return `
-                <div class="px-[10px] mb-5 max-w-[25%]">
+                <div class="px-[10px] mb-5 max-w-[25%] select-none">
                 <a href="/product/${product.id}" class="block relative overflow-hidden mb-[10px] group">
                     <img src="./src/assets/images/${product.images[0]}" alt=""
                         class="transition-all max-w-full ease-in duration-300">

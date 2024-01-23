@@ -12,7 +12,7 @@ const ProductList = async targetCategory => {
         ${products
             .map(
                 product => `
-        <div class="px-[10px] mb-5 max-w-[33.3333333333%] flex-shrink-0 flex-grow-0">
+        <div class="px-[10px] mb-5 max-w-[33.3333333333%] flex-shrink-0 flex-grow-0 select-none">
             <a href="/product/${product.id}" class="block relative overflow-hidden mb-[10px] group">
                 <img src="./src/assets/images/${
                     product.images[0]
@@ -30,8 +30,8 @@ const ProductList = async targetCategory => {
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
                 </div>
-                <i class="fa-regular fa-heart cursor-pointer"></i>
-                <i class="fa-solid fa-heart cursor-pointer text-red-500 hidden"></i>
+                <i class="heart-icon heart fa-regular fa-heart cursor-pointer p-1"></i>
+                <i class="heart-icon heart-red fa-solid fa-heart cursor-pointer text-red-500 p-1 hidden"></i>
             </div>
             <div class="font-light text-sm my-2 cursor-pointer transition-all ease-linear duration-75 hover:font-bold"><a href="/product/${
                 product.id

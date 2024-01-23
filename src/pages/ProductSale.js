@@ -4,13 +4,13 @@ import ProductList from '../components/ProductList';
 import Footer from '../components/Footer';
 
 const endpoint = 'http://localhost:3000/product';
-const ProductPage = async () => {
+const ProductSale = async () => {
     const response = await fetch(endpoint);
     const product = await response.json();
     return `
 ${Header()}
 <section class="w-full mt-[113px] max-w-[1350px] mx-auto px-4">
-    <a href="" class="block">
+    <a href="" class="block select-none">
         <img src="./src/assets/images/banner1.webp" alt="" class="max-w-full">
     </a>
 </section>
@@ -34,4 +34,4 @@ ${Header()}
 ${Footer()}
 `;
 };
-export default ProductPage;
+export default ProductSale;

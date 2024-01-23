@@ -2,7 +2,7 @@ const Footer = () => {
     return `<section class="mt-5 flex justify-center items-center bg-second">
     <div class="text-center flex items-center justify-center py-[27px] w-full border-r border-[rgba(246,243,228,.1)]">
         <a href="#!" class="text-white">
-            <img src="./src/assets/images/contact-img1.png" alt="" class="w-[30px] h-[30px] object-contain mx-auto mb-[10px]">
+            <img src="../src/assets/images/contact-img1.png" alt="" class="w-[30px] h-[30px] object-contain mx-auto mb-[10px]">
             <p>
                 <strong>6 NGÀY ĐỔI SẢN PHẨM</strong>
             </p>
@@ -11,7 +11,7 @@ const Footer = () => {
     </div>
     <div class="text-center flex items-center justify-center py-[27px] w-full border-r border-[rgba(246,243,228,.1)]">
         <a href="#!" class="text-white">
-            <img src="./src/assets/images/contact-img2.png" alt="" class="w-[30px] h-[30px] object-contain mx-auto mb-[10px]">
+            <img src="../src/assets/images/contact-img2.png" alt="" class="w-[30px] h-[30px] object-contain mx-auto mb-[10px]">
             <p>
                 <strong>HOTLINE 1800 6650</strong>
             </p>
@@ -20,7 +20,7 @@ const Footer = () => {
     </div>
     <div class="text-center flex items-center justify-center py-[27px] w-full border-r border-[rgba(246,243,228,.1)]">
         <a href="#!" class="text-white">
-            <img src="./src/assets/images/contact-img3.png" alt="" class="w-[30px] h-[30px] object-contain mx-auto mb-[10px]">
+            <img src="../src/assets/images/contact-img3.png" alt="" class="w-[30px] h-[30px] object-contain mx-auto mb-[10px]">
             <p>
                 <strong>HỆ THỐNG CỬA HÀNG</strong>
             </p>
@@ -29,7 +29,7 @@ const Footer = () => {
     </div>
     <div class="text-center flex items-center justify-center py-[27px] w-full">
         <a href="#!" class="text-white">
-            <img src="./src/assets/images/contact-img4.png" alt="" class="w-[30px] h-[30px] mb-[10px] object-contain mx-auto"/>
+            <img src="../src/assets/images/contact-img4.png" alt="" class="w-[30px] h-[30px] mb-[10px] object-contain mx-auto"/>
             <p>
                 <strong>VẬN CHUYỂN</strong>
             </p>
