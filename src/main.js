@@ -10,7 +10,8 @@ import AccessoryPage from './pages/AccessoryPage.js';
 import NotFound from './pages/NotFound.js';
 import Collection from './pages/Collection.js';
 import ShowFashion from './pages/ShowFashion.js';
-import { handleAddImage } from './scripts/detailEvent.js';
+import { handleAddImage, modalShow, toggleActiveSize } from './scripts/detailEvent.js';
+import scrollProducts from './scripts/scrollProducts.js';
 
 const app = document.querySelector('#app');
 
@@ -21,6 +22,8 @@ router
     .on('/accessory', () => render(AccessoryPage, app, toggleFavourite))
     .on('/collection', () => render(Collection, app))
     .on('/showFashion', () => render(ShowFashion, app))
-    .on('/product/:id', ({ data }) => render(() => ProductDetails(data), app, handleAddImage))
+    .on('/product/:id', ({ data }) =>
+        render(() => ProductDetails(data), app, handleAddImage, modalShow, toggleActiveSize, scrollProducts)
+    )
     .notFound(() => render(NotFound, app))
     .resolve();

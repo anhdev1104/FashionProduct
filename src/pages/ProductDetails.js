@@ -1,88 +1,149 @@
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import getCategoryName from '../utilities/getCategoryName';
 
 const endpoint = 'http://localhost:3000/product';
-
 const ProductDetails = async ({ id }) => {
     const res = await fetch(endpoint);
     const products = await res.json();
     const product = products.find(product => product.id === +id);
+    const remainingQuantity = product.size.reduce((acc, curr) => acc + curr.quantity, 0);
+    const shuffledProducts = products.sort(() => Math.random() - 0.5);
+    // lấy ra số lượng tối đa của sp random
+    const count = 10;
+    const randomProduct = shuffledProducts.slice(0, count);
+    // lấy ra tên category của sp detail
+    const category = await getCategoryName(product.categoryID);
     return `
-    ${Header()}
-    <main class="w-full max-w-[1350px] mx-auto px-4">
-    <section class="mt-[120px]">
+${Header()}
+<main class="w-full max-w-[1350px] mx-auto px-4">
+    <section class="mt-[110px]">
         <form action="" method="POST">
-            <div class="flex items-center font-light">
+            <div class="flex items-center font-light uppercase">
                 <a href="/" class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">TRANG CHỦ</a>
                 <span class="text-gray-300 mx-2 text-lg">/</span>
-                <div class="transition-all ease-in duration-200 hover:text-[#a9a9a9]"></div>
+                <div class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">${category}</div>
                 <span class="text-gray-300 mx-2 text-lg">/</span>
                 <div href="#!" class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">${product.name}</div>
             </div>
-            <div class="mt-10 flex justify-between">
+            <div class="mt-5 flex justify-between">
                 <div class="w-[45%] flex gap-[15px]">
                     <ul class="list-none w-[110px] block h-auto">
-                        <li class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px] border-transparent border-[rgb(189,24,28)]">
+                        <li
+                            class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px] border-[rgb(189,24,28)]">
                             <img src="../src/assets/images/${product.images[0]}" alt="">
                         </li>
-                        <li class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px] border-transparent">
+                        <li class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px]">
                             <img src="../src/assets/images/${product.images[1]}" alt="">
                         </li>
                     </ul>
                     <div class="overflow-hidden cursor-zoom-in group">
-                        <img src="../src/assets/images/${
-                            product.images[0]
-                        }" alt="" class="hover:scale-125 object-contain max-w-full w-full max-h-full transition-all ease-linear duration-300" id="details-img">
+                        <img src="../src/assets/images/${product.images[0]}" alt=""
+                            class="hover:scale-125 object-contain max-w-full w-full max-h-full transition-all ease-linear duration-300"
+                            id="details-img">
                     </div>
                 </div>
                 <div class="w-[50%]">
-                    <h2 class="details-title"><?= $title; ?></h2>
-                    <span class="details-quantity">SL KHO CÒN: <?= $quantity; ?></span>
-                    <p class="details-price">
-                        <span class="current-price"><?= str_replace(',', '.', number_format($price)) . 'đ'; ?></span>
-                        <span class="details-old-price"><?= str_replace(',', '.', number_format($old_price)) . 'đ'; ?></span>
-                    </p>
-                    <p class="details-size">
+                    <h2 class="font-medium mb-1 text-xl">${product.name}</h2>
+                    <span class="font-light text-sm">Số lượng kho còn: <b
+                            class="font-bold text-base">${remainingQuantity}</b></span>
+                    <div class="mb-5 flex items-center gap-[18px] mt-3">
+                        <span class="font-bold text-lg">${product.price
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
+                        <span class="font-light text-[#a9a9a9] line-through">${product.priceOrigin
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
+                    </div>
+                    <p class="font-light mt-5 mb-[10px] flex items-center">
                         SIZE :
-                        <span></span>
+                        <span class="font-bold mx-2" id="innerSize"></span>
                     </p>
-                    <div class="details-options wraper">
-                        <div class="options-size wraper">
-                            <a href="#!" class="item-option">S</a>
-                            <a href="#!" class="item-option">M</a>
-                            <a href="#!" class="item-option">L</a>
+                    <div class="flex items-center justify-between">
+                        <div class="flex gap-5">
+                            <div
+                                class="cursor-pointer flex items-center justify-center w-10 h-10 border border-[#e3ddbb] bg-white font-light item-option">
+                                S</div>
+                            <div
+                                class="cursor-pointer flex items-center justify-center w-10 h-10 border border-[#e3ddbb] bg-white font-light item-option">
+                                M</div>
+                            <div
+                                class="cursor-pointer flex items-center justify-center w-10 h-10 border border-[#e3ddbb] bg-white font-light item-option">
+                                L</div>
                         </div>
-                        <div class="modal-size" id="modal-size">
+                        <div class="cursor-pointer font-light text-[#007ff0] text-sm hover:underline" id="modal-size">
                             Tìm đúng kích thước →
                         </div>
-                        <div class="overlay" id="overlay">
-                            <div class="box-size" id="box-size">
-                                <div class="box-size-close" id="close-icon">
+                        <div class="fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-40 z-20 items-center justify-center hidden overlay"
+                            id="overlay">
+                            <div class="relative max-w-[1000px] w-full h-[700px] shadow-xl box-modal" id="box-size">
+                                <div class="absolute top-0 right-0 text-[40px] cursor-pointer py-[10px] px-6 text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]"
+                                    id="close-icon">
                                     <i class="fa-solid fa-xmark"></i>
                                 </div>
-                                <img src="./img/boxsize.jpg" alt="" class="box-size-img">
+                                <img src="../src/assets/images/boxsize.jpg" alt="" class="w-full h-full">
                             </div>
                         </div>
 
                     </div>
-                    <div class="details-add wraper">
-                        <input type="submit" name="addproductdetails" class="add-cart" value="THÊM VÀO GIỎ HÀNG">
-                        <a href="#!" class="details-heart">
+                    <div class="flex justify-between items-center mt-[25px] pb-[30px] border-b border-borderColor">
+                        <input type="submit" name="addproductdetails"
+                            class="max-w-[380px] w-full h-50px leading-[50px] block text-white cursor-pointer outline-none border-none bg-second font-light text-center transition-all ease-in-out duration-200 hover:font-bold hover:bg-[#a9a9a9]"
+                            value="THÊM VÀO GIỎ HÀNG">
+                        <div
+                            class="w-[50px] h-[50px] border border-borderColor bg-white flex items-center justify-center text-xl transition-all ease-in duration-200 hover:border-second cursor-pointer">
                             <i class="fa-regular fa-heart heart-icon heart-details"></i>
-                        </a>
+                        </div>
                     </div>
-                    <div class="details-description">
-                        <h3 class="description-tile">CHI TIẾT SẢN PHẨM</h3>
-                        <p class="descripton-content">Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!</p>
-                        <p class="descripton-content"><?= $descript ?></p>
+                    <div class="py-[25px]">
+                        <h3 class="mb-4 font-medium">CHI TIẾT SẢN PHẨM</h3>
+                        <p class="mb-5 leading-6 font-light">Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét
+                            đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của
+                            SIXDO ngay thôi!</p>
+                        <p class="mb-[30px] leading-6 font-light">${product.description}</p>
                     </div>
                 </div>
             </div>
         </form>
     </section>
+    <section class="mt-[50px]">
+        <div class="flex items-center justify-between">
+            <h1 class="font-medium">CÓ THỂ BẠN CŨNG THÍCH</h1>
+            <div class="flex items-center gap-5">
+                <div class="py-[10px] px-[15px] bg-white cursor-pointer border border-borderColor hover:border-second group btn-prev">
+                    <i class="fa fa-angle-left text-[#999] group-hover:text-second"></i>
+                </div>
+                <div class="py-[10px] px-[15px] bg-white cursor-pointer border border-borderColor  hover:border-second group btn-next">
+                    <i class="fa fa-angle-right text-[#999] group-hover:text-second"></i>
+                </div>
+            </div>
+        </div>
 
-    </main>
-    ${Footer()}
-    `;
+        <div class="flex mt-5">
+            <div class="favorite-list flex overflow-x-auto scroll-smooth mx-[-10px]">
+                ${randomProduct
+                    .map(
+                        product => `
+                <div class="product-item box-border px-[10px] mb-5 max-w-[25%] flex-shrink-0 flex-grow-0">
+                    <a href="/product/${product.id}" class="mb-[10px] block relative overflow-hidden group">
+                        <img src="../src/assets/images/${
+                            product.images[0]
+                        }" alt="" class="max-w-full transition-all duration-300 ease-in">
+                        <img src="../src/assets/images/${
+                            product.images[1]
+                        }" alt="" class="transition-all duration-300 ease-in max-w-full absolute top-0 left-0 opacity-0 group-hover:opacity-100">
+                    </a>
+                    <h3 class="text-sm uppercase font-medium leading-6 mb-1">${product.name}</h3>
+                    <p class="font-light text-sm">${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</p>
+                </div>
+                `
+                    )
+                    .join('')}
+            </div>
+        </div>
+    </section>
+</main>
+${Footer()}
+`;
 };
 export default ProductDetails;

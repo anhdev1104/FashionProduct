@@ -11,4 +11,49 @@
     body {
         background-color: #f6f3e4;
     }
+
+    .item-option-active {
+        background-color: #3e3e3e !important;
+        color: #fff !important;
+        font-weight: 500 !important;
+    }
+
+    .favorite-list {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .favorite-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .overlay {
+        animation: fadeIn ease-in-out .2s;
+    }
+
+    .box-modal {
+        animation: showFadeIn .4s ease;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes showFadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-650px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
