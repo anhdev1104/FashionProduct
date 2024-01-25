@@ -30,7 +30,7 @@ const scrollProducts = () => {
 
     listFavorite.addEventListener('wheel', function (e) {
         e.preventDefault();
-        const delta = e.deltaY * 3.4;
+        const delta = e.deltaY * 3.3;
         this.scrollLeft += delta;
     });
 };

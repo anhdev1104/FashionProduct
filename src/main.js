@@ -12,18 +12,29 @@ import Collection from './pages/Collection.js';
 import ShowFashion from './pages/ShowFashion.js';
 import { handleAddImage, modalShow, toggleActiveSize } from './scripts/detailEvent.js';
 import scrollProducts from './scripts/scrollProducts.js';
+import cartPage from './pages/cartPage.js';
+import addModalCart from './scripts/addModalCart.js';
 
 const app = document.querySelector('#app');
 
 router
-    .on('/', () => render(HomePage, app, slideFn))
-    .on('/product', () => render(ProductPage, app, toggleFavourite))
-    .on('/productsale', () => render(ProductSale, app, toggleFavourite))
-    .on('/accessory', () => render(AccessoryPage, app, toggleFavourite))
-    .on('/collection', () => render(Collection, app))
-    .on('/showFashion', () => render(ShowFashion, app))
+    .on('/', () => render(HomePage, app, slideFn, addModalCart))
+    .on('/product', () => render(ProductPage, app, toggleFavourite, addModalCart))
+    .on('/productsale', () => render(ProductSale, app, toggleFavourite, addModalCart))
+    .on('/accessory', () => render(AccessoryPage, app, toggleFavourite, addModalCart))
+    .on('/collection', () => render(Collection, app, addModalCart))
+    .on('/showFashion', () => render(ShowFashion, app, addModalCart))
+    .on('/cart', () => render(cartPage, app, addModalCart))
     .on('/product/:id', ({ data }) =>
-        render(() => ProductDetails(data), app, handleAddImage, modalShow, toggleActiveSize, scrollProducts)
+        render(
+            () => ProductDetails(data),
+            app,
+            handleAddImage,
+            modalShow,
+            toggleActiveSize,
+            scrollProducts,
+            addModalCart
+        )
     )
-    .notFound(() => render(NotFound, app))
+    .notFound(() => render(NotFound, app, addModalCart))
     .resolve();
