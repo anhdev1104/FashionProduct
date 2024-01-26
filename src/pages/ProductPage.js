@@ -3,10 +3,7 @@ import Sidebar from './layout/product/Sidebar';
 import ProductList from '../components/ProductList';
 import Footer from '../components/Footer';
 
-const endpoint = 'http://localhost:3000/product';
 const ProductPage = async () => {
-    const response = await fetch(endpoint);
-    const product = await response.json();
     return `
 ${Header()}
 <section class="w-full mt-[113px] max-w-[1350px] mx-auto px-4">
@@ -18,16 +15,6 @@ ${Header()}
     <section class="mt-[50px] flex">
         ${Sidebar()}
         <div class="flex-grow pl-[30px]">
-            <div class="border-b border-borderColor mb-5 flex items-center justify-between pb-[5px]">
-                <div class="gap-5 flex items-center">
-                    <p class="text-second font-bold uppercase">SẢN PHẨM MỚI</p>
-                    <span class="font-light text-gray-500">(486 Item)</span>
-                </div>
-                <div class="cursor-pointer gap-3 font-bold items-center flex">
-                    <i class="fa-solid fa-list-ol"></i>
-                    <span>SORT</span>
-                </div>
-            </div>
             ${await ProductList(1)}
     </section>
 </main>

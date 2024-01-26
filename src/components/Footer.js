@@ -73,7 +73,7 @@ const Footer = () => {
             <img src="https://sixdo.vn/images/Thongbaobocongthuong.svg" alt="" class="mt-5 mx-auto">
         </div>
     </section>
-    <section class="border-t border-[#e3ddbb] font-light text-center pt-5 mb-[50px]">©2023 This template is made with by Bui Hoang Anh</section>
+    <section class="border-t border-[#e3ddbb] font-light text-center pt-5 mb-[50px]">©2024 This template is made with by Bui Hoang Anh</section>
 </footer>`;
 };
 

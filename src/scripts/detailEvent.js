@@ -16,14 +16,14 @@ export function handleAddImage() {
 export function modalShow() {
     const modalSize = document.querySelector('#modal-size');
     const overlayModal = document.querySelector('#overlay');
-    const closeIcon = document.querySelector('#close-icon');
+    const closeIconModal = document.querySelector('.close-icon');
     const boxModal = document.querySelector('#box-size');
-
+    console.log(closeIconModal);
     modalSize.addEventListener('click', () => {
         overlayModal.style.display = 'flex';
     });
 
-    closeIcon.addEventListener('click', () => {
+    closeIconModal.addEventListener('click', () => {
         overlayModal.style.display = 'none';
     });
 

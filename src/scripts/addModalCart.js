@@ -1,7 +1,7 @@
-const addModalCart = () => {
+const addModalCart = e => {
     const cartIcon = document.querySelector('#cartIcon');
-    const overlayModal = document.querySelector('#overlay');
-    const closeIcon = document.querySelector('#close-icon');
+    const overlayModal = document.querySelector('#overlayCart');
+    const closeIcon = document.querySelector('#close-icon-cart');
     const cart = document.querySelector('#cart');
 
     cartIcon.addEventListener('click', () => {

@@ -27,7 +27,7 @@ ${Header()}
                 <div href="#!" class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">${product.name}</div>
             </div>
             <div class="mt-5 flex justify-between">
-                <div class="w-[45%] flex gap-[15px]">
+                <div class="w-[45%] flex gap-[15px] select-none">
                     <ul class="list-none w-[110px] block h-auto">
                         <li
                             class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px] border-[rgb(189,24,28)]">
@@ -77,8 +77,7 @@ ${Header()}
                         <div class="fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-40 z-20 items-center justify-center hidden overlay"
                             id="overlay">
                             <div class="relative max-w-[1000px] w-full h-[700px] shadow-xl box-modal" id="box-size">
-                                <div class="absolute top-0 right-0 text-[40px] cursor-pointer py-[10px] px-6 text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]"
-                                    id="close-icon">
+                                <div class="absolute top-0 right-0 text-[40px] cursor-pointer py-[10px] px-6 text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9] close-icon" id="close-icon">
                                     <i class="fa-solid fa-xmark"></i>
                                 </div>
                                 <img src="../src/assets/images/boxsize.jpg" alt="" class="w-full h-full">
@@ -125,7 +124,7 @@ ${Header()}
                     .map(
                         product => `
                 <div class="product-item box-border px-[10px] mb-5 max-w-[25%] flex-shrink-0 flex-grow-0">
-                    <a href="/product/${product.id}" class="mb-[10px] block relative overflow-hidden group">
+                    <a href="/product/${product.id}" class="mb-[10px] block relative overflow-hidden group select-none">
                         <img src="../src/assets/images/${
                             product.images[0]
                         }" alt="" class="max-w-full transition-all duration-300 ease-in">

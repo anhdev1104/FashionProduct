@@ -59,6 +59,14 @@
         animation: showFadeIn .4s ease;
     }
 
+    .form-group.invalid input {
+        border-color: #f33a58;
+    }
+
+    .form-group.invalid .form-message {
+        color: #f33a58;
+    }
+
     @keyframes fadeIn {
         0% {
             opacity: 0;
