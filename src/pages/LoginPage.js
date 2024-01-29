@@ -5,14 +5,16 @@ const LoginPage = () => {
     </section>
     <section class="w-[50%] px-[50px] py-[25px]">
         <h1 class="text-[36px] text-second text-center mb-[35px]">ĐĂNG NHẬP TÀI KHOẢN</h1>
-        <form action="" method="POST" enctype="multipart/form-data" id="form2">
-            <div class="mb-[25px]">
+        <form action="" method="POST" enctype="multipart/form-data" id="formLogin">
+            <div class="form-group mb-[25px]">
                 <label for="email" class="block cursor-pointer text-base mb-1">Email</label>
-                <input type="email" name="email" id="email" class="w-full py-[15px] outline-none bg-transparent border-b border-borderColor block text-base" placeholder="Email đăng nhập" required>
+                <input type="email" name="email" id="email" class="w-full py-[15px] outline-none bg-transparent border-b border-borderColor block text-base" placeholder="Email đăng nhập">
+                <span class="form-message text-red-500 text-[13px] mt-2 block"></span>
             </div>
-            <div class="mb-[25px]">
+            <div class="form-group mb-[25px]">
                 <label for="password" class="block cursor-pointer text-base mb-1">Mật khẩu</label>
-                <input type="password" name="password" id="password" class="w-full py-[15px] outline-none bg-transparent border-b border-borderColor block text-base" placeholder="Nhập tối thiểu 6 kí tự" required>
+                <input type="password" name="password" id="password" class="w-full py-[15px] outline-none bg-transparent border-b border-borderColor block text-base" placeholder="Nhập tối thiểu 8 kí tự">
+                <span class="form-message text-red-500 text-[13px] mt-2 block"></span>
             </div>
             <div class="flex items-center justify-center gap-6 py-2 mb-5">
             <a href="" class="leading-5 font-light text-center hover:font-bold">Đổi mật khẩu</a>

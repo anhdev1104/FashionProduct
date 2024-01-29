@@ -24,7 +24,7 @@ const Register = () => {
             </div>
             <div class="form-group mb-[25px]">
                 <label for="address" class="block cursor-pointer text-base">Địa chỉ</label>
-                <input type="address" name="address" id="address" class="w-full py-3 outline-none bg-transparent border-b border-borderColor block text-base" placeholder="VD: 575 Tôn Đức Thắng, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng">
+                <input type="address" name="address" id="address" class="w-full py-3 outline-none bg-transparent border-b border-borderColor block text-base" placeholder="Ex: 575 Tôn Đức Thắng, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng">
                 <span class="form-message text-red-500 text-[13px] mt-2 block"></span>
             </div>
             <div class="form-group mb-[25px]">

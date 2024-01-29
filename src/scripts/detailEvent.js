@@ -18,7 +18,7 @@ export function modalShow() {
     const overlayModal = document.querySelector('#overlay');
     const closeIconModal = document.querySelector('.close-icon');
     const boxModal = document.querySelector('#box-size');
-    console.log(closeIconModal);
+
     modalSize.addEventListener('click', () => {
         overlayModal.style.display = 'flex';
     });

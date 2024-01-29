@@ -152,6 +152,16 @@ const validate = () => {
         };
     };
 
+    Validator.isNumberPhone = selector => {
+        return {
+            selector,
+            test: value => {
+                const regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+                return regex.test(value) ? undefined : 'Số điện thoại không hợp lệ!';
+            },
+        };
+    };
+
     Validator.minLength = function (selector, min, message) {
         return {
             selector,
@@ -170,6 +180,7 @@ const validate = () => {
         };
     };
 
+    // form register
     Validator({
         form: '#formRegister',
         formGroupSelector: '.form-group',
@@ -179,14 +190,23 @@ const validate = () => {
             Validator.isRequired('#email'),
             Validator.isEmail('#email'),
             Validator.minLength('#password', 8),
+            Validator.isRequired('#phonenumber', 'Vui lòng nhập số điện thoại của bạn !'),
+            Validator.isNumberPhone('#phonenumber'),
+            Validator.isRequired('#address', 'Vui lòng nhập vào địa chỉ cụ thể !'),
             Validator.isConfirmed(
                 '#password_confirmation',
-                function () {
-                    return document.querySelector('#formRegister #password').value;
-                },
+                () => document.querySelector('#formRegister #password').value,
                 'Mật khẩu nhập lại không chính xác !'
             ),
         ],
+    });
+
+    // form login
+    Validator({
+        form: '#formLogin',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [Validator.isRequired('#email'), Validator.isEmail('#email'), Validator.minLength('#password', 8)],
     });
 };
 
