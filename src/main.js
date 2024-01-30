@@ -23,6 +23,8 @@ import { render, router } from '../src/utilities/index.js';
 import validate from './utilities/validate.js';
 // admin
 import index from './pages/admin/index.js';
+import Products from './pages/admin/products.js';
+import ProductDetail from './pages/admin/ProductDetail.js';
 
 const app = document.querySelector('#app');
 
@@ -50,7 +52,10 @@ router
     );
 
 // admin
-router.on('/admin', () => render(index, app));
+router
+    .on('/admin', () => render(index, app))
+    .on('/admin/products', () => render(Products, app))
+    .on('/admin/products/:id', ({ data }) => render(() => ProductDetail(data), app));
 
 router.notFound(() => render(NotFound, app));
 router.resolve();
