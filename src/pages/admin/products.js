@@ -12,13 +12,11 @@ const Products = () => {
             const res = await fetch(endpoint);
             const data = await res.json();
             const dataReverse = Object.entries(data).reverse();
-            console.log([data].reverse());
-            setProduct([data].reverse());
+            setProduct(dataReverse);
         };
         fetchData();
     }, []);
 
-    console.log(products);
     useEffect(() => {
         // add product
         const nameProduct = document.querySelector('#nameProduct');
@@ -42,6 +40,7 @@ const Products = () => {
 
         const handleSubmit = async e => {
             e.preventDefault();
+
             if (
                 checkEmpty(nameProduct.value.trim()) ||
                 checkEmpty(imagesProduct.value.trim()) ||
@@ -59,6 +58,12 @@ const Products = () => {
                     duration: 4000,
                 });
             }
+
+            // handle ngăn chặn click nhiều lần vào btn Add thêm 1 sản phẩm nhiều lần
+            const btnAdd = document.querySelector('#btnAdd');
+            console.log(btnAdd);
+            btnAdd.classList.add('pointer-events-none');
+
             const listImages = imagesProduct.files;
             const images = [...listImages].map(image => image.name);
             // Lấy thông tin về kích thước và số lượng
@@ -91,16 +96,16 @@ const Products = () => {
                 body: JSON.stringify(newProduct),
             });
 
-            setTimeout(() => {
-                router.navigate('/admin/products');
-            }, 1500);
-
             Toast({
                 title: 'Thành công ✅',
                 message: 'Thêm sản phẩm thành công.',
                 type: 'success',
                 duration: 1000,
             });
+
+            setTimeout(() => {
+                router.navigate('/admin/products');
+            }, 1000);
         };
 
         const form = document.querySelector('#addProduct');
@@ -117,15 +122,17 @@ const Products = () => {
             btn.addEventListener('click', async function () {
                 const isDelete = confirm('Bạn muốn xoá sản phẩm này khỏi trang web ?');
                 if (!isDelete) return;
+
                 const id = this.dataset.id;
-                console.log(id);
                 await fetch(`https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
-                const newProducts = products.filter(product => product.id - 1 !== +id);
+
+                const newProducts = products.filter(product => product[0] !== id);
+
                 setProduct(newProducts);
             })
         );
@@ -251,7 +258,7 @@ const Products = () => {
                             </div>
                             <div class="mb-4">
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    type="submit">
+                                    type="submit" id="btnAdd">
                                     Thêm sản phẩm
                                 </button>
                             </div>
@@ -271,29 +278,27 @@ const Products = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ${products.map(item =>
-                                        Object.keys(item)
-                                            .map(key => {
-                                                const product = item[key];
-                                                return `
+                                    ${products
+                                        .map(
+                                            product =>
+                                                `
                                     <tr>
                                         <td class="border p-2 w-[120px] h-[140px]">
-                                            <img src="../../src/assets/images/${product.images[0]}" alt="" class="" />
+                                            <img src="../../src/assets/images/${product[1].images[0]}" alt="" class="" />
                                         </td>
-                                        <td class="border p-2">${product.name}</td>
+                                        <td class="border p-2">${product[1].name}</td>
                                         <td class="border p-2 w-24">
-                                            <a href="/admin/products/${product.id}"
+                                            <a href="/admin/products/${product[0]}"
                                                 class="block p-2 rounded-md bg-blue-500 hover:bg-blue-700 text-white text-center mb-1">Chi
                                                 tiết</a>
 
-                                            <button data-id="${key}"
+                                            <button data-id="${product[0]}"
                                                 class="btn-delete min-w-24 p-2 rounded-md bg-red-500 hover:bg-red-600 text-white text-center">Xoá</button>
                                         </td>
                                     </tr>
-                                    `;
-                                            })
-                                            .join('')
-                                    )}
+                                    `
+                                        )
+                                        .join('')}
                                 </tbody>
                             </table>
                         </div>

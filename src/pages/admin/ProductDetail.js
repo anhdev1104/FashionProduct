@@ -2,10 +2,12 @@ import getCategoryName from '../../utilities/getCategoryName';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
 
 const ProductDetail = async ({ id }) => {
-    const res = await fetch('http://localhost:3000/product');
-    const products = await res.json();
-    const product = products.find(product => product.id === +id);
-    console.log(product.size);
+    const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    const products = Object.entries(data).reverse();
+    const product = products.find(product => product[0] === id);
+
     return `<main class="bg-gray-200">
     <div class="flex h-screen bg-gray-200 ml-[256px]">
         ${SidebarAdmin()}
@@ -36,25 +38,25 @@ const ProductDetail = async ({ id }) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="border p-2 text-center">${product.name}</td>
+                                    <td class="border p-2 text-center">${product[1].name}</td>
                                     <td class="border p-2 w-[130px]">
                                             <img src="../../src/assets/images/${
-                                                product.images[0]
+                                                product[1].images[0]
                                             }" alt="" class="object-contain" />
                                     </td>
                                     <td class="border p-2 w-[130px]">
                                             <img src="../../src/assets/images/${
-                                                product.images[1]
+                                                product[1].images[1]
                                             }" alt="" class="object-contain" />
                                     </td>
-                                    <td class="border p-2 text-center">${product.price
+                                    <td class="border p-2 text-center">${product[1].price
                                         .toString()
                                         .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</td>
-                                        <td class="border p-2 text-center">${product.priceOrigin
+                                        <td class="border p-2 text-center">${product[1].priceOrigin
                                             .toString()
                                             .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</td>
                                     <td class="border p-2 text-center w-36">
-                                        ${product.size
+                                        ${product[1].size
                                             .map(
                                                 item => `
                                             <div class="mb-2">
@@ -65,9 +67,9 @@ const ProductDetail = async ({ id }) => {
                                             )
                                             .join('')}
                                     </td>
-                                    <td class="border p-2 text-center">${product.description}</td>
+                                    <td class="border p-2 text-center">${product[1].description}</td>
                                     <td class="border p-2 text-center w-36">${await getCategoryName(
-                                        product.categoryID
+                                        product[1].categoryID
                                     )}</td>
                                     <td class="border p-2 text-center w-28">
                                         <a href=""
