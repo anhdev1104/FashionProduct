@@ -1,18 +1,19 @@
+import axios from 'axios';
 import Header from '../components/Header';
 import Slider from './layout/home/Slider';
 import Insta from './layout/home/Insta';
 import Footer from '../components/Footer';
-
 const HomePage = async () => {
-    const endpoint = 'http://localhost:3000/product';
-    const response = await fetch(endpoint);
-
-    const data = await response.json();
-    const targetCategory = 1;
-    const filterProducts = data.filter(item => item.categoryID === targetCategory).reverse();
-    const maxProductsToShow = 8;
-    const products = filterProducts.slice(0, maxProductsToShow);
-    return `
+    // const endpoint = 'http://localhost:3000/product';
+    // const response = await fetch(endpoint);
+    // const data = await response.json();
+    try {
+        const { data } = await axios.get('http://localhost:3000/product');
+        const targetCategory = 1;
+        const filterProducts = data.filter(item => item.categoryID === targetCategory).reverse();
+        const maxProductsToShow = 8;
+        const products = filterProducts.slice(0, maxProductsToShow);
+        return `
 ${Header()}
 <main class="mt-[93px]">
     ${await Slider()}
@@ -26,21 +27,21 @@ ${Header()}
                     .map(product => {
                         return `
                 <div class="px-[10px] mb-5 max-w-[25%] select-none">
-                <a href="/product/${product.id}" class="block relative overflow-hidden mb-[10px] group">
-                    <img src="./src/assets/images/${product.images[0]}" alt=""
-                        class="transition-all max-w-full ease-in duration-300">
-                    <img src="./src/assets/images/${product.images[1]}" alt=""
-                        class="transition-all max-w-full ease-in duration-300 absolute top-0 left-0 opacity-0 group-hover:opacity-100">
-                </a>
-                <div class="flex items-center justify-between">
-                    <span class="font-bold text-second">${product.price
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
+                    <a href="/product/${product.id}" class="block relative overflow-hidden mb-[10px] group">
+                        <img src="./src/assets/images/${product.images[0]}" alt=""
+                            class="transition-all max-w-full ease-in duration-300">
+                        <img src="./src/assets/images/${product.images[1]}" alt=""
+                            class="transition-all max-w-full ease-in duration-300 absolute top-0 left-0 opacity-0 group-hover:opacity-100">
+                    </a>
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-second">${product.price
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
+                    </div>
+                    <div
+                        class="font-light text-sm my-2 cursor-pointer transition-all ease-linear duration-75 hover:font-bold">
+                        <a href="">${product.name}</a></div>
                 </div>
-                <div
-                    class="font-light text-sm my-2 cursor-pointer transition-all ease-linear duration-75 hover:font-bold">
-                    <a href="">${product.name}</a></div>
-            </div>
                 `;
                     })
                     .join('')}
@@ -51,8 +52,11 @@ ${Header()}
             thêm</a>
     </section>
     ${await Insta()}
-    </main>
-    ${Footer()}
+</main>
+${Footer()}
 `;
+    } catch (error) {
+        console.log(error);
+    }
 };
 export default HomePage;

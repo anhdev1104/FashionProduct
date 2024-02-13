@@ -5,7 +5,7 @@ const ProductDetail = async ({ id }) => {
     const res = await fetch('http://localhost:3000/product');
     const products = await res.json();
     const product = products.find(product => product.id === +id);
-
+    console.log(product.size);
     return `<main class="bg-gray-200">
     <div class="flex h-screen bg-gray-200 ml-[256px]">
         ${SidebarAdmin()}

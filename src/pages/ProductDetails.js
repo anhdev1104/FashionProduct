@@ -1,5 +1,8 @@
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { handleAddImage, modalShow, toggleActiveSize } from '../scripts/detailEvent';
+import scrollProducts from '../scripts/scrollProducts';
+import { useEffect } from '../utilities';
 import getCategoryName from '../utilities/getCategoryName';
 
 const endpoint = 'http://localhost:3000/product';
@@ -14,6 +17,13 @@ const ProductDetails = async ({ id }) => {
     const randomProduct = shuffledProducts.slice(0, count);
     // lấy ra tên category của sp detail
     const category = await getCategoryName(product.categoryID);
+
+    useEffect(() => {
+        handleAddImage();
+        modalShow();
+        toggleActiveSize();
+        scrollProducts();
+    });
     return `
 ${Header()}
 <main class="w-full max-w-[1350px] mx-auto px-4">

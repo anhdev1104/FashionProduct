@@ -1,4 +1,11 @@
+import addModalCart from '../scripts/addModalCart';
+import { useEffect } from '../utilities';
+
 const Header = () => {
+    useEffect(() => {
+        addModalCart();
+    });
+
     return `<header
     class="w-full bg-primary border-b border-solid border-[#e3ddbb] py-[1px] fixed top-0 left-0 right-0 z-10">
     <section class="w-full max-w-[1350px] mx-auto px-4 flex justify-between items-center gap-5">

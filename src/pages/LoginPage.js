@@ -1,4 +1,16 @@
+import { useEffect } from '../utilities';
+import Validator from '../utilities/validate';
+
 const LoginPage = () => {
+    useEffect(() => {
+        // form login
+        Validator({
+            form: '#formLogin',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [Validator.isRequired('#email'), Validator.isEmail('#email'), Validator.minLength('#password', 8)],
+        });
+    });
     return `<main class="flex w-full h-[100vh]">
     <section class="w-[50%] h-full">
         <img src="./src/assets/images/login2.jpg" alt="" class="w-full h-full object-cover">

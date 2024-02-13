@@ -1,4 +1,29 @@
+import { useEffect } from '../utilities';
+import Validator from '../utilities/validate';
+
 const Register = () => {
+    useEffect(() => {
+        // form register
+        Validator({
+            form: '#formRegister',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ của bạn !'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.minLength('#password', 8),
+                Validator.isRequired('#phonenumber', 'Vui lòng nhập số điện thoại của bạn !'),
+                Validator.isNumberPhone('#phonenumber'),
+                Validator.isRequired('#address', 'Vui lòng nhập vào địa chỉ cụ thể !'),
+                Validator.isConfirmed(
+                    '#password_confirmation',
+                    () => document.querySelector('#formRegister #password').value,
+                    'Mật khẩu nhập lại không chính xác !'
+                ),
+            ],
+        });
+    });
     return `<main class="flex w-full">
     <section class="w-[50%]">
         <img src="./src/assets/images/register.jpg" alt="" class="w-full h-full object-cover">

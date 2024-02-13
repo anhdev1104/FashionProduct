@@ -1,7 +1,14 @@
+import slideFn from '../../../scripts/slideFn';
+import { useEffect } from '../../../utilities';
+
 const endpoint = `http://localhost:3000/slider`;
 const Slider = async () => {
     const response = await fetch(endpoint);
     const slider = await response.json();
+
+    useEffect(() => {
+        slideFn();
+    });
 
     return `
     <section class="w-full relative top-0">

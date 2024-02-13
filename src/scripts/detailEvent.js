@@ -42,7 +42,6 @@ export function toggleActiveSize() {
 
     [...btnSizes].forEach(item => {
         item.addEventListener('click', function () {
-            console.log(item);
             [...btnSizes].forEach(item => item.classList.remove('item-option-active'));
             this.classList.toggle('item-option-active');
             innerSize.textContent = this.textContent;
