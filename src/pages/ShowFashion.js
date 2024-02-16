@@ -2,7 +2,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const ShowFashion = async () => {
-    const response = await fetch('http://localhost:3000/showFashion');
+    const response = await fetch('https://project-45d37-default-rtdb.firebaseio.com/showFashion.json');
     const collection = await response.json();
     return `
     <main>

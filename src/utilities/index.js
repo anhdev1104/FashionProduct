@@ -1,4 +1,5 @@
 import Navigo from 'navigo';
+import Loader, { hideLoader } from '../pages/Loader.js';
 
 const router = new Navigo('/', { linksSelector: 'a' });
 
@@ -22,14 +23,22 @@ const debounce = (fn, timeout = 100) => {
 };
 
 const render = async (component, container) => {
-    container.innerHTML = await component();
+    Loader();
 
-    rootComponent = component;
-    rootContainer = container;
+    try {
+        container.innerHTML = await component();
 
-    effects.forEach(effect => {
-        effect.cb();
-    });
+        hideLoader();
+
+        rootComponent = component;
+        rootContainer = container;
+
+        effects.forEach(effect => {
+            effect.cb();
+        });
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const rerender = debounce(() => {

@@ -1,4 +1,4 @@
-const endpoint = 'http://localhost:3000/instagram';
+const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/instagram.json';
 const Insta = async () => {
     const response = await fetch(endpoint);
     const instagram = await response.json();

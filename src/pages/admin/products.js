@@ -61,7 +61,6 @@ const Products = () => {
 
             // handle ngăn chặn click nhiều lần vào btn Add thêm 1 sản phẩm nhiều lần
             const btnAdd = document.querySelector('#btnAdd');
-            console.log(btnAdd);
             btnAdd.classList.add('pointer-events-none');
 
             const listImages = imagesProduct.files;
@@ -97,7 +96,7 @@ const Products = () => {
             });
 
             Toast({
-                title: 'Thành công ✅',
+                title: 'Thành công !',
                 message: 'Thêm sản phẩm thành công.',
                 type: 'success',
                 duration: 1000,
@@ -111,9 +110,7 @@ const Products = () => {
         const form = document.querySelector('#addProduct');
         form.addEventListener('submit', handleSubmit);
 
-        return () => {
-            form.removeEventListener('submit', handleSubmit);
-        };
+        return () => form.removeEventListener('submit', handleSubmit);
     }, [products]);
 
     useEffect(() => {

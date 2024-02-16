@@ -5,19 +5,21 @@ import scrollProducts from '../scripts/scrollProducts';
 import { useEffect } from '../utilities';
 import getCategoryName from '../utilities/getCategoryName';
 
-const endpoint = 'http://localhost:3000/product';
+const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
 const ProductDetails = async ({ id }) => {
     const res = await fetch(endpoint);
     const products = await res.json();
-    const product = products.find(product => product.id === +id);
-    const remainingQuantity = product.size.reduce((acc, curr) => acc + curr.quantity, 0);
-    const shuffledProducts = products.sort(() => Math.random() - 0.5);
+    const convertProducts = Object.entries(products);
+    const product = convertProducts.find(product => product[0] === id);
+    const remainingQuantity = product[1].size.reduce((acc, curr) => acc + curr.quantity, 0);
     // lấy ra số lượng tối đa của sp random
     const count = 10;
+    const shuffledProducts = convertProducts.sort(() => Math.random() - 0.5);
     const randomProduct = shuffledProducts.slice(0, count);
     // lấy ra tên category của sp detail
-    const category = await getCategoryName(product.categoryID);
+    const category = await getCategoryName(product[1].categoryID);
 
+    // events
     useEffect(() => {
         handleAddImage();
         modalShow();
@@ -34,34 +36,34 @@ ${Header()}
                 <span class="text-gray-300 mx-2 text-lg">/</span>
                 <div class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">${category}</div>
                 <span class="text-gray-300 mx-2 text-lg">/</span>
-                <div href="#!" class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">${product.name}</div>
+                <div href="#!" class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">${product[1].name}</div>
             </div>
             <div class="mt-5 flex justify-between">
                 <div class="w-[45%] flex gap-[15px] select-none">
                     <ul class="list-none w-[110px] block h-auto">
                         <li
                             class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px] border-[rgb(189,24,28)]">
-                            <img src="../src/assets/images/${product.images[0]}" alt="">
+                            <img src="../src/assets/images/${product[1].images[0]}" alt="">
                         </li>
                         <li class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px]">
-                            <img src="../src/assets/images/${product.images[1]}" alt="">
+                            <img src="../src/assets/images/${product[1].images[1]}" alt="">
                         </li>
                     </ul>
                     <div class="overflow-hidden cursor-zoom-in group">
-                        <img src="../src/assets/images/${product.images[0]}" alt=""
+                        <img src="../src/assets/images/${product[1].images[0]}" alt=""
                             class="hover:scale-125 object-contain max-w-full w-full max-h-full transition-all ease-linear duration-300"
                             id="details-img">
                     </div>
                 </div>
                 <div class="w-[50%]">
-                    <h2 class="font-medium mb-1 text-xl">${product.name}</h2>
+                    <h2 class="font-medium mb-1 text-xl">${product[1].name}</h2>
                     <span class="font-light text-sm">Số lượng kho còn: <b
                             class="font-bold text-base">${remainingQuantity}</b></span>
                     <div class="mb-5 flex items-center gap-[18px] mt-3">
-                        <span class="font-bold text-lg">${product.price
+                        <span class="font-bold text-lg">${product[1].price
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
-                        <span class="font-light text-[#a9a9a9] line-through">${product.priceOrigin
+                        <span class="font-light text-[#a9a9a9] line-through">${product[1].priceOrigin
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
                     </div>
@@ -109,7 +111,7 @@ ${Header()}
                         <p class="mb-5 leading-6 font-light">Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét
                             đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của
                             SIXDO ngay thôi!</p>
-                        <p class="mb-[30px] leading-6 font-light">${product.description}</p>
+                        <p class="mb-[30px] leading-6 font-light">${product[1].description}</p>
                     </div>
                 </div>
             </div>
@@ -134,16 +136,18 @@ ${Header()}
                     .map(
                         product => `
                 <div class="product-item box-border px-[10px] mb-5 max-w-[25%] flex-shrink-0 flex-grow-0">
-                    <a href="/product/${product.id}" class="mb-[10px] block relative overflow-hidden group select-none">
+                    <a href="/product/${product[0]}" class="mb-[10px] block relative overflow-hidden group select-none">
                         <img src="../src/assets/images/${
-                            product.images[0]
+                            product[1].images[0]
                         }" alt="" class="max-w-full transition-all duration-300 ease-in">
                         <img src="../src/assets/images/${
-                            product.images[1]
+                            product[1].images[1]
                         }" alt="" class="transition-all duration-300 ease-in max-w-full absolute top-0 left-0 opacity-0 group-hover:opacity-100">
                     </a>
-                    <h3 class="text-sm uppercase font-medium leading-6 mb-1">${product.name}</h3>
-                    <p class="font-light text-sm">${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</p>
+                    <h3 class="text-sm uppercase font-medium leading-6 mb-1">${product[1].name}</h3>
+                    <p class="font-light text-sm">${product[1].price
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</p>
                 </div>
                 `
                     )

@@ -2,11 +2,12 @@ import getCategoryName from '../../utilities/getCategoryName';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
 
 const ProductDetail = async ({ id }) => {
-    const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
+    const endpoint = `https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`;
     const res = await fetch(endpoint);
-    const data = await res.json();
-    const products = Object.entries(data).reverse();
-    const product = products.find(product => product[0] === id);
+    const product = await res.json();
+
+    // const products = Object.entries(data);
+    // const product = products.find(product => product[0] === id);
 
     return `<main class="bg-gray-200">
     <div class="flex h-screen bg-gray-200 ml-[256px]">
@@ -33,30 +34,31 @@ const ProductDetail = async ({ id }) => {
                                     <th class="px-4 py-2">Số lượng size</th>
                                     <th class="px-4 py-2">Mô tả</th>
                                     <th class="px-4 py-2">Danh mục</th>
+                                    <th class="px-4 py-2">Trạng thái</th>
                                     <th class="px-4 py-2">Tùy chọn</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="border p-2 text-center">${product[1].name}</td>
+                                    <td class="border p-2 text-center">${product.name}</td>
                                     <td class="border p-2 w-[130px]">
                                             <img src="../../src/assets/images/${
-                                                product[1].images[0]
+                                                product.images[0]
                                             }" alt="" class="object-contain" />
                                     </td>
                                     <td class="border p-2 w-[130px]">
                                             <img src="../../src/assets/images/${
-                                                product[1].images[1]
+                                                product.images[1]
                                             }" alt="" class="object-contain" />
                                     </td>
-                                    <td class="border p-2 text-center">${product[1].price
+                                    <td class="border p-2 text-center">${product.price
                                         .toString()
                                         .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</td>
-                                        <td class="border p-2 text-center">${product[1].priceOrigin
+                                        <td class="border p-2 text-center">${product.priceOrigin
                                             .toString()
                                             .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</td>
                                     <td class="border p-2 text-center w-36">
-                                        ${product[1].size
+                                        ${product.size
                                             .map(
                                                 item => `
                                             <div class="mb-2">
@@ -67,12 +69,17 @@ const ProductDetail = async ({ id }) => {
                                             )
                                             .join('')}
                                     </td>
-                                    <td class="border p-2 text-center">${product[1].description}</td>
-                                    <td class="border p-2 text-center w-36">${await getCategoryName(
-                                        product[1].categoryID
+                                    <td class="border p-2 text-center">
+                                        <textarea cols="17" rows="7" disabled>${product.description}</textarea>
+                                    </td>
+                                    <td class="border p-2 text-center w-36 capitalize">${await getCategoryName(
+                                        product.categoryID
                                     )}</td>
+                                    <td class="border p-2 text-center">${
+                                        product.isActive === 1 ? 'Hiển thị' : 'Ẩn'
+                                    }</td>
                                     <td class="border p-2 text-center w-28">
-                                        <a href=""
+                                        <a href="../updateproduct/${id}"
                                             class="block p-2 rounded-md bg-yellow-500 hover:bg-yellow-600 text-white text-center mb-1">Chỉnh
                                             sửa</a>
                                     </td>

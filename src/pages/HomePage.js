@@ -3,6 +3,8 @@ import Header from '../components/Header';
 import Slider from './layout/home/Slider';
 import Insta from './layout/home/Insta';
 import Footer from '../components/Footer';
+import NotFound from './NotFound';
+
 const HomePage = async () => {
     try {
         const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/product.json');
@@ -10,10 +12,10 @@ const HomePage = async () => {
         const targetCategory = 1;
         const filterProducts = convertData.filter(item => item[1].categoryID === targetCategory).reverse();
         const maxProductsToShow = 8;
-        const products = filterProducts.slice(0, maxProductsToShow);
+        const products = filterProducts.filter(product => product[1].isActive === 1).slice(0, maxProductsToShow);
         return `
 ${Header()}
-<main class="mt-[93px]">
+<section class="mt-[93px]">
     ${await Slider()}
     <section class="">
         <h1 class="text-center mt-[60px] mb-5 text-3xl">
@@ -50,11 +52,12 @@ ${Header()}
             thêm</a>
     </section>
     ${await Insta()}
-</main>
+</section>
 ${Footer()}
 `;
     } catch (error) {
         console.log(error);
+        return NotFound();
     }
 };
 export default HomePage;

@@ -1,0 +1,752 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "sản phẩm mới"
+    },
+    {
+      "id": 2,
+      "name": "sản phẩm giảm giá"
+    },
+    {
+      "id": 3,
+      "name": "phụ kiện"
+    }
+  ],
+  "collection": [
+    "collection1.jpg",
+    "collection2.jpg",
+    "collection3.jpg",
+    "collection4.jpg",
+    "collection5.jpg",
+    "collection6.jpg",
+    "collection7.jpg",
+    "collection8.jpg",
+    "collection9.jpg"
+  ],
+  "instagram": [
+    "insta1.webp",
+    "insta2.webp",
+    "insta3.webp",
+    "insta4.webp",
+    "insta5.webp",
+    "insta6.webp",
+    "insta7.webp",
+    "insta8.webp",
+    "insta9.webp"
+  ],
+  "product": {
+    "-NqYb3nrb0ReZd3JBqR3": {
+      "categoryID": 1,
+      "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+      "images": [
+        "product1.jpg",
+        "product1-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Black and Pink Midi Tweed Dress",
+      "price": 2250000,
+      "priceOrigin": 1998000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 263
+        },
+        {
+          "label": "M",
+          "quantity": 113
+        },
+        {
+          "label": "L",
+          "quantity": 26
+        }
+      ]
+    },
+    "-NqYctlQMyVgPIFMAM1a": {
+      "categoryID": 1,
+      "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+      "images": [
+        "product2.jpg",
+        "product2-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "V-neck Mini Velvet Dress",
+      "price": 1890000,
+      "priceOrigin": 1248000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 52
+        },
+        {
+          "label": "M",
+          "quantity": 61
+        },
+        {
+          "label": "L",
+          "quantity": 22
+        }
+      ]
+    },
+    "-NqYdDL90O2n0INqYT3O": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product3.jpg",
+        "product3-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Black With Yellow Poppy Midi Voile Dress",
+      "price": 3496000,
+      "priceOrigin": 2797000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 141
+        },
+        {
+          "label": "M",
+          "quantity": 32
+        },
+        {
+          "label": "L",
+          "quantity": 126
+        }
+      ]
+    },
+    "-NqYdqgi-rM6x0KBVgeb": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product4.jpg",
+        "product4-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "White Poppy Sleeveless Midi Voile Dress",
+      "price": 2896000,
+      "priceOrigin": 2317000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 24
+        },
+        {
+          "label": "M",
+          "quantity": 66
+        },
+        {
+          "label": "L",
+          "quantity": 12
+        }
+      ]
+    },
+    "-NqYe6si7-ozpQOnqBgN": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product5.jpg",
+        "product5-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "White Poppy Off-shoulder Midi Voile Dress",
+      "price": 2896000,
+      "priceOrigin": 2317000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 52
+        },
+        {
+          "label": "M",
+          "quantity": 36
+        },
+        {
+          "label": "L",
+          "quantity": 76
+        }
+      ]
+    },
+    "-NqYeLnv2Xzzj9b1WGSf": {
+      "categoryID": 1,
+      "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+      "images": [
+        "product6.jpg",
+        "product6-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Black Cherry Blossom Midi Voile Dress",
+      "price": 2996000,
+      "priceOrigin": 2397000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 63
+        },
+        {
+          "label": "M",
+          "quantity": 22
+        },
+        {
+          "label": "L",
+          "quantity": 11
+        }
+      ]
+    },
+    "-NqYi6D_SGOpcDaVr1bh": {
+      "categoryID": 1,
+      "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+      "images": [
+        "product7.jpg",
+        "product7-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "White Poppy Midi Voile Dress",
+      "price": 3495000,
+      "priceOrigin": 2797000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 0
+        },
+        {
+          "label": "M",
+          "quantity": 0
+        },
+        {
+          "label": "L",
+          "quantity": 0
+        }
+      ]
+    },
+    "-NqYisYYBau1NbZyTV63": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product8.jpg",
+        "product8-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "White Poppy Midi Dress",
+      "price": 2896000,
+      "priceOrigin": 2797000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 56
+        },
+        {
+          "label": "M",
+          "quantity": 47
+        },
+        {
+          "label": "L",
+          "quantity": 124
+        }
+      ]
+    },
+    "-NqYjKfrT6Wqs81_QI_p": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product9.jpg",
+        "product9-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "White Poppy Midi Voile Dress",
+      "price": 2968000,
+      "priceOrigin": 2637000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 22
+        },
+        {
+          "label": "M",
+          "quantity": 11
+        },
+        {
+          "label": "L",
+          "quantity": 67
+        }
+      ]
+    },
+    "-NqYjb1Ly_6ZCkxx_HDc": {
+      "categoryID": 1,
+      "description": "Hoa Poppy – loài hoa gây nghiện và sở hữu trong mình nét đẹp tiềm tàng. Sở hữu ngay làn gió mới với họa tiết hoa Poppy thuộc BST Colorfull Poppy của SIXDO ngay thôi!",
+      "images": [
+        "product11.jpg",
+        "product11-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Light Murrey Poppy Midi Voile Dress",
+      "price": 2496000,
+      "priceOrigin": 2297000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 24
+        },
+        {
+          "label": "M",
+          "quantity": 12
+        },
+        {
+          "label": "L",
+          "quantity": 67
+        }
+      ]
+    },
+    "-NqYjqNjki68ZoWrNzjF": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product10.jpg",
+        "product10-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Multicolor Polka Dots Top",
+      "price": 2496000,
+      "priceOrigin": 2037000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 63
+        },
+        {
+          "label": "M",
+          "quantity": 11
+        },
+        {
+          "label": "L",
+          "quantity": 14
+        }
+      ]
+    },
+    "-NqYk5gBzPn0Ep7mC2AN": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product12.jpg",
+        "product12-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Ochre Midi Woven Dress With Flower",
+      "price": 1296000,
+      "priceOrigin": 1037000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 52
+        },
+        {
+          "label": "M",
+          "quantity": 77
+        },
+        {
+          "label": "L",
+          "quantity": 9
+        }
+      ]
+    },
+    "-NqYkNRJ5V3RJDuSs5BO": {
+      "categoryID": 1,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product13.jpg",
+        "product13-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Ochre Stripe Wide Leg Woven Pants",
+      "price": 1896000,
+      "priceOrigin": 1797000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 15
+        },
+        {
+          "label": "M",
+          "quantity": 73
+        },
+        {
+          "label": "L",
+          "quantity": 13
+        }
+      ]
+    },
+    "-Nq_mmvwp2DrEpbaxCXf": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale1.jpg",
+        "product-sale1-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Ochre Midi Woven Dress With Flower",
+      "price": 2496000,
+      "priceOrigin": 899000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 35
+        },
+        {
+          "label": "M",
+          "quantity": 24
+        },
+        {
+          "label": "L",
+          "quantity": 85
+        }
+      ]
+    },
+    "-Nq_ncvw1Sg8y0Cp5spO": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale2.jpg",
+        "product-sale2-1.jpg"
+      ],
+      "isActive": 1,
+      "name": "Red Orange Floral Midi Chiffon Skirt",
+      "price": 1496000,
+      "priceOrigin": 499000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 46
+        },
+        {
+          "label": "M",
+          "quantity": 57
+        },
+        {
+          "label": "L",
+          "quantity": 11
+        }
+      ]
+    },
+    "-Nq_oDo4DOX3sn1CRwlP": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale-3.jpg",
+        "product-sale-3-1.jpg"
+      ],
+      "isActive": 1,
+      "name": "Floral Midi Chiffon Dress",
+      "price": 2396000,
+      "priceOrigin": 799000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 74
+        },
+        {
+          "label": "M",
+          "quantity": 22
+        },
+        {
+          "label": "L",
+          "quantity": 85
+        }
+      ]
+    },
+    "-Nq_rouaDiW9m-Y6eCHb": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale4.jpg",
+        "product-sale4-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Lily Midi Voile Dress",
+      "price": 1396000,
+      "priceOrigin": 799000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 63
+        },
+        {
+          "label": "M",
+          "quantity": 61
+        },
+        {
+          "label": "L",
+          "quantity": 52
+        }
+      ]
+    },
+    "-Nq_sN3EDFNjVORlTpY3": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale5.jpg",
+        "product-sale5-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Dark Mint Floral Batwing Midi Woven Dress",
+      "price": 2296000,
+      "priceOrigin": 899000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 13
+        },
+        {
+          "label": "M",
+          "quantity": 51
+        },
+        {
+          "label": "L",
+          "quantity": 87
+        }
+      ]
+    },
+    "-Nq_sbSp2SJ9O0kEItFX": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale6.jpg",
+        "product-sale6-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Polka Dot Flute Sleeve Chiffon Top",
+      "price": 1196000,
+      "priceOrigin": 399000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 52
+        },
+        {
+          "label": "M",
+          "quantity": 88
+        },
+        {
+          "label": "L",
+          "quantity": 11
+        }
+      ]
+    },
+    "-Nq_sqxn3ZdBe5f_cqeT": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale7.jpg",
+        "product-sale7-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Floral Strappy Midi Voile Dress",
+      "price": 1396000,
+      "priceOrigin": 799000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 22
+        },
+        {
+          "label": "M",
+          "quantity": 63
+        },
+        {
+          "label": "L",
+          "quantity": 12
+        }
+      ]
+    },
+    "-Nq_t33BcOcUQGlH-2aX": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale8.jpg",
+        "product-sale8-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Light Green Nuggets Midi Silk Dress",
+      "price": 2057891,
+      "priceOrigin": 699000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 35
+        },
+        {
+          "label": "M",
+          "quantity": 23
+        },
+        {
+          "label": "L",
+          "quantity": 63
+        }
+      ]
+    },
+    "-Nq_tTKqQTAjsXgGURh5": {
+      "categoryID": 2,
+      "description": "Bảng size trên là bảng size chung mang tính chất tham khảo, tùy thuộc vào số đo cơ thể, form sản phẩm và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1-2cm hoặc hơn.",
+      "images": [
+        "product-sale9.jpg",
+        "product-sale9-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Halter Neck Midi Silk Dress",
+      "price": 2450618,
+      "priceOrigin": 799000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 52
+        },
+        {
+          "label": "M",
+          "quantity": 22
+        },
+        {
+          "label": "L",
+          "quantity": 11
+        }
+      ]
+    },
+    "-Nq_uO1k-KkjIv3XO3eU": {
+      "categoryID": 3,
+      "description": "",
+      "images": [
+        "phukien1.jpg",
+        "phukien1-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Shoes A22-3",
+      "price": 2754000,
+      "priceOrigin": 2254000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 123
+        },
+        {
+          "label": "M",
+          "quantity": 12
+        },
+        {
+          "label": "L",
+          "quantity": 110
+        }
+      ]
+    },
+    "-Nq_wJJZQR0ZRqlJRWbA": {
+      "categoryID": 3,
+      "description": "",
+      "images": [
+        "phukien2.jpg",
+        "phukien2-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Black Shoes 766-9",
+      "price": 2990000,
+      "priceOrigin": 2647000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 12
+        },
+        {
+          "label": "M",
+          "quantity": 52
+        },
+        {
+          "label": "L",
+          "quantity": 11
+        }
+      ]
+    },
+    "-Nq_woU_oK4o5PrcS6Oj": {
+      "categoryID": 3,
+      "description": "",
+      "images": [
+        "phukien3.jpg",
+        "phukien3-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Black Shoes 2026-8",
+      "price": 3120000,
+      "priceOrigin": 2647000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 51
+        },
+        {
+          "label": "M",
+          "quantity": 13
+        },
+        {
+          "label": "L",
+          "quantity": 52
+        }
+      ]
+    },
+    "-Nq_x8RKpoegvPHmd_pc": {
+      "categoryID": 3,
+      "description": "",
+      "images": [
+        "phukien4.jpg",
+        "phukien4-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Hand Bag 202211",
+      "price": 2991000,
+      "priceOrigin": 2451000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 24
+        },
+        {
+          "label": "M",
+          "quantity": 64
+        },
+        {
+          "label": "L",
+          "quantity": 11
+        }
+      ]
+    },
+    "-Nq_xKrYgqX_9yp1K34M": {
+      "categoryID": 3,
+      "description": "",
+      "images": [
+        "phukien5.jpg",
+        "phukien5-2.jpg"
+      ],
+      "isActive": 1,
+      "name": "Hand Bag 202209",
+      "price": 2950000,
+      "priceOrigin": 2254000,
+      "size": [
+        {
+          "label": "S",
+          "quantity": 24
+        },
+        {
+          "label": "M",
+          "quantity": 13
+        },
+        {
+          "label": "L",
+          "quantity": 53
+        }
+      ]
+    }
+  },
+  "showFashion": [
+    "fashionshow1.jpg",
+    "fashionshow2.jpg",
+    "fashionshow3.jpg"
+  ],
+  "slider": [
+    "banner4.webp",
+    "banner5.webp",
+    "banner2.webp"
+  ]
+}
