@@ -12,10 +12,10 @@ const ProductPage = async category => {
             toggleFavourite();
         });
         return `
-    ${Header()}
+    ${await Header()}
     <section class="w-full mt-[113px] max-w-[1350px] mx-auto px-4">
         <a href="" class="block select-none">
-            <img src="./src/assets/images/banner1.webp" alt="" class="max-w-full">
+            <img src="../src/assets/images/banner1.webp" alt="" class="max-w-full">
         </a>
     </section>
     <main class="w-full max-w-[1350px] mx-auto px-4">

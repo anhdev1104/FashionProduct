@@ -4,12 +4,13 @@ import SidebarAdmin from '../layout/admin/SidebarAdmin';
 
 const UpdateProduct = async ({ id }) => {
     const endpoint = `https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`;
-    const res = await fetch(endpoint);
-    const product = await res.json();
+    const res = await axios.get(endpoint);
+    const product = await res.data;
 
     // api category
-    const resCate = await fetch('https://project-45d37-default-rtdb.firebaseio.com/categories.json');
-    const dataCate = await resCate.json();
+    const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/categories.json');
+    const dataCate = Object.entries(data);
+    console.log(dataCate);
 
     // handle update submit
     useEffect(() => {
@@ -146,9 +147,9 @@ const UpdateProduct = async ({ id }) => {
                                     ${dataCate
                                         .map(
                                             category => `
-                                    <option value="${category.id}" ${
-                                                category.id === product.categoryID ? 'selected' : ''
-                                            }>${category.name}</option>
+                                    <option value="${category[1].id}" ${
+                                                category[1].id === product.categoryID ? 'selected' : ''
+                                            }>${category[1].name}</option>
                                     `
                                         )
                                         .join('')}

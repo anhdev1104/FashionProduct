@@ -15,7 +15,7 @@ const SidebarAdmin = () => {
                     Quản lý sản phẩm</a>
             </li>
             <li class="px-6 py-4 text-gray-400 border-t border-gray-700">
-                <a href="#" class="block text-gray-200 hover:text-white">
+                <a href="/admin/categories" class="block text-gray-200 hover:text-white">
                     <i class="fa-solid fa-list pr-2"></i>
                     Quản lý danh mục</a>
             </li>

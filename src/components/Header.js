@@ -1,10 +1,15 @@
+import axios from 'axios';
 import addModalCart from '../scripts/addModalCart';
 import { useEffect } from '../utilities';
 
-const Header = () => {
+const Header = async () => {
     useEffect(() => {
         addModalCart();
     });
+
+    const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/categories.json');
+    const category = Object.entries(data);
+    category.sort((a, b) => a[1].position - b[1].position);
 
     return `<header
     class="w-full bg-primary border-b border-solid border-[#e3ddbb] py-[1px] fixed top-0 left-0 right-0 z-10">
@@ -150,21 +155,17 @@ const Header = () => {
             </div>
             <nav>
                 <ul class="flex justify-end items-center gap-8 font-medium">
+                    ${category
+                        .map(
+                            category => `
                     <li>
-                        <a href="/product"
-                            class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">SẢN
-                            PHẨM MỚI</a>
+                        <a href="/category/${category[1].id}"
+                            class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2 uppercase">${category[1].name}</a>
                     </li>
-                    <li>
-                        <a href="/productsale"
-                            class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">SẢN
-                            PHẨM GIẢM GIÁ</a>
-                    </li>
-                    <li>
-                        <a href="/accessory"
-                            class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">PHỤ
-                            KIỆN</a>
-                    </li>
+                    `
+                        )
+                        .join('')}
+                    
                     <li>
                         <a href="/collection"
                             class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">BỘ

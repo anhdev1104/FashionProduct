@@ -5,20 +5,29 @@ import axios from 'axios';
 
 const Products = () => {
     const [products, setProduct] = useState([]);
+    const [category, setCategory] = useState([]);
     const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(endpoint);
-            const data = await res.json();
+            const { data } = await axios.get(endpoint);
             const dataReverse = Object.entries(data).reverse();
             setProduct(dataReverse);
         };
         fetchData();
+
+        const fetchCate = async () => {
+            const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/categories.json');
+            const category = Object.entries(data);
+            setCategory(category);
+        };
+        fetchCate();
     }, []);
 
     useEffect(() => {
         // add product
+        const form = document.querySelector('#addProduct');
+
         const nameProduct = document.querySelector('#nameProduct');
         const imagesProduct = document.querySelector('#imagesProduct');
         const priceProduct = document.querySelector('#priceProduct');
@@ -87,13 +96,7 @@ const Products = () => {
                 isActive: +statusProduct.value,
             };
 
-            await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newProduct),
-            });
+            await axios.post(endpoint, newProduct);
 
             Toast({
                 title: 'Thành công !',
@@ -107,9 +110,7 @@ const Products = () => {
             }, 1000);
         };
 
-        const form = document.querySelector('#addProduct');
-        form.addEventListener('submit', handleSubmit);
-
+        form?.addEventListener('submit', handleSubmit);
         return () => form.removeEventListener('submit', handleSubmit);
     }, [products]);
 
@@ -121,16 +122,18 @@ const Products = () => {
                 if (!isDelete) return;
 
                 const id = this.dataset.id;
-                await fetch(`https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                await axios.delete(`https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`);
+
+                Toast({
+                    title: 'Đã xoá !',
+                    message: 'Xoá sản phẩm thành công.',
+                    type: 'success',
+                    duration: 1000,
                 });
 
-                const newProducts = products.filter(product => product[0] !== id);
-
-                setProduct(newProducts);
+                setTimeout(() => {
+                    router.navigate('admin/products');
+                }, 1000);
             })
         );
     }, [products]);
@@ -163,7 +166,7 @@ const Products = () => {
                             </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="imagesProduct">
-                                    Hình ảnh
+                                    Hình ảnh (giữ Ctrl để chọn nhiều ảnh)
                                 </label>
                                 <input
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -236,9 +239,14 @@ const Products = () => {
                                     class="block appearance-none w-full border rounded px-3 py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="category">
                                     <option value="">Chọn danh mục</option>
-                                    <option value="1">Sản phẩm mới</option>
-                                    <option value="2">Sản phẩm giảm giá</option>
-                                    <option value="3">Phụ kiện</option>
+                                    ${category
+                                        .map(
+                                            category => `
+                                    <option value="${category[1].id}">${category[1].name}</option>
+                                    `
+                                        )
+                                        .join('')}
+
                                 </select>
                             </div>
                             <div class="mb-4 relative">

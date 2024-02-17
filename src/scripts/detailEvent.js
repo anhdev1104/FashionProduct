@@ -3,6 +3,7 @@ export function handleAddImage() {
     const listImages = document.querySelectorAll('.details-item-img');
     const mainImage = document.querySelector('#details-img');
 
+    listImages[0].classList.add('border-[rgb(189,24,28)]');
     [...listImages].forEach(item =>
         item.addEventListener('click', function () {
             [...listImages].forEach(item => item.classList.remove('border-[rgb(189,24,28)]'));

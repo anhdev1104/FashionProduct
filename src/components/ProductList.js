@@ -1,9 +1,9 @@
+import axios from 'axios';
 import getCategoryName from '../utilities/getCategoryName';
 
 const ProductList = async targetCategory => {
     const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
-    const response = await fetch(endpoint);
-    const data = await response.json();
+    const { data } = await axios.get(endpoint);
     const convertData = Object.entries(data);
     const filterProducts = convertData.filter(item => item[1].categoryID === targetCategory).reverse();
     const maxProductsToShow = 6;
@@ -12,6 +12,7 @@ const ProductList = async targetCategory => {
     const category = await getCategoryName(targetCategory);
     // lấy số lượng item sp của danh mục
     const totalItem = filterProducts.length;
+
     return `
 <div class="border-b border-borderColor mb-5 flex items-center justify-between pb-[5px]">
     <div class="gap-5 flex items-center">
@@ -30,10 +31,10 @@ const ProductList = async targetCategory => {
             product => `
     <div class="px-[10px] mb-5 max-w-[33.3333333333%] flex-shrink-0 flex-grow-0 select-none">
         <a href="/product/${product[0]}" class="block relative overflow-hidden mb-[10px] group">
-            <img src="./src/assets/images/${
+            <img src="../src/assets/images/${
                 product[1].images[0]
             }" alt="" class="transition-all max-w-full ease-in duration-300">
-            <img src="./src/assets/images/${product[1].images[1]}" alt=""
+            <img src="../src/assets/images/${product[1].images[1]}" alt=""
                 class="transition-all max-w-full ease-in duration-300 absolute top-0 left-0 opacity-0 group-hover:opacity-100">
         </a>
         <div class="flex items-center justify-between">

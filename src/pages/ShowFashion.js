@@ -1,12 +1,13 @@
+import axios from 'axios';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const ShowFashion = async () => {
-    const response = await fetch('https://project-45d37-default-rtdb.firebaseio.com/showFashion.json');
-    const collection = await response.json();
+    const response = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/showFashion.json');
+    const collection = await response.data;
     return `
     <main>
-    ${Header()}
+    ${await Header()}
         <section class="w-full max-w-[1350px] mx-auto px-4 mt-[93px] select-none">
             <div class="w-full py-[30px] flex flex-wrap mx-auto">
                 ${collection
@@ -22,7 +23,6 @@ const ShowFashion = async () => {
             <a href=""
             class="h-[50px] w-[220px] bg-transparent flex justify-center items-center border-solid border-2 border-second ml-[10px] mb-10 uppercase font-bold text-base transition-all ease-in-out duration-200 hover:bg-second hover:text-primary">VIEW MORE +</a>
         </section>
-
     </main>
     ${Footer()}
     `;

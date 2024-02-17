@@ -13,13 +13,13 @@ const HomePage = async () => {
         const filterProducts = convertData.filter(item => item[1].categoryID === targetCategory).reverse();
         const maxProductsToShow = 8;
         const products = filterProducts.filter(product => product[1].isActive === 1).slice(0, maxProductsToShow);
-        return `
-${Header()}
+        return ` 
+${await Header()}
 <section class="mt-[93px]">
     ${await Slider()}
     <section class="">
         <h1 class="text-center mt-[60px] mb-5 text-3xl">
-            <a href="/product" class="hover:opacity-55">NEW ARRIVAL</a>
+            <a href="" class="hover:opacity-55">NEW ARRIVAL</a>
         </h1>
         <div class="w-full max-w-[1350px] mx-auto px-4">
             <div class="flex flex-wrap mx-[-10px]">

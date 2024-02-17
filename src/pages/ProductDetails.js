@@ -1,33 +1,36 @@
+import axios from 'axios';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { handleAddImage, modalShow, toggleActiveSize } from '../scripts/detailEvent';
 import scrollProducts from '../scripts/scrollProducts';
 import { useEffect } from '../utilities';
 import getCategoryName from '../utilities/getCategoryName';
+import NotFound from './NotFound';
 
 const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
 const ProductDetails = async ({ id }) => {
-    const res = await fetch(endpoint);
-    const products = await res.json();
-    const convertProducts = Object.entries(products);
-    const product = convertProducts.find(product => product[0] === id);
-    const remainingQuantity = product[1].size.reduce((acc, curr) => acc + curr.quantity, 0);
-    // lấy ra số lượng tối đa của sp random
-    const count = 10;
-    const shuffledProducts = convertProducts.sort(() => Math.random() - 0.5);
-    const randomProduct = shuffledProducts.slice(0, count);
-    // lấy ra tên category của sp detail
-    const category = await getCategoryName(product[1].categoryID);
+    try {
+        const res = await axios.get(endpoint);
+        const products = await res.data;
+        const convertProducts = Object.entries(products);
+        const product = convertProducts.find(product => product[0] === id);
+        const remainingQuantity = product[1].size.reduce((acc, curr) => acc + curr.quantity, 0);
+        // lấy ra số lượng tối đa của sp random
+        const count = 10;
+        const shuffledProducts = convertProducts.sort(() => Math.random() - 0.5);
+        const randomProduct = shuffledProducts.slice(0, count);
+        // lấy ra tên category của sp detail
+        const category = await getCategoryName(product[1].categoryID);
 
-    // events
-    useEffect(() => {
-        handleAddImage();
-        modalShow();
-        toggleActiveSize();
-        scrollProducts();
-    });
-    return `
-${Header()}
+        // events
+        useEffect(() => {
+            handleAddImage();
+            modalShow();
+            toggleActiveSize();
+            scrollProducts();
+        });
+        return `
+${await Header()}
 <main class="w-full max-w-[1350px] mx-auto px-4">
     <section class="mt-[110px]">
         <form action="" method="POST">
@@ -40,14 +43,18 @@ ${Header()}
             </div>
             <div class="mt-5 flex justify-between">
                 <div class="w-[45%] flex gap-[15px] select-none">
-                    <ul class="list-none w-[110px] block h-auto">
+                    <ul class="list-none w-[110px] block h-[100vh] overflow-y-auto overflow-hidden detail-scroll">
+                        ${product[1].images
+                            .map(
+                                image => `
                         <li
-                            class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px] border-[rgb(189,24,28)]">
-                            <img src="../src/assets/images/${product[1].images[0]}" alt="">
+                        class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px]">
+                        <img src="../src/assets/images/${image}" alt="">
                         </li>
-                        <li class="details-item-img cursor-pointer mb-2 max-w-full block border-[3px]">
-                            <img src="../src/assets/images/${product[1].images[1]}" alt="">
-                        </li>
+                        `
+                            )
+                            .join('')}
+                        
                     </ul>
                     <div class="overflow-hidden cursor-zoom-in group">
                         <img src="../src/assets/images/${product[1].images[0]}" alt=""
@@ -158,5 +165,9 @@ ${Header()}
 </main>
 ${Footer()}
 `;
+    } catch (error) {
+        console.log(error);
+        return NotFound();
+    }
 };
 export default ProductDetails;

@@ -1,12 +1,13 @@
+import axios from 'axios';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const Collection = async () => {
-    const response = await fetch('https://project-45d37-default-rtdb.firebaseio.com/collection.json');
-    const collection = await response.json();
+    const res = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/collection.json');
+    const collection = await res.data;
     return `
     <main>
-    ${Header()}
+    ${await Header()}
         <section class="w-full max-w-[1350px] mx-auto px-4 mt-[93px] select-none">
             <div class="w-full py-[30px] flex flex-wrap mx-auto">
                 ${collection

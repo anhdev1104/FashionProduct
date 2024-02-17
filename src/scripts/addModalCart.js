@@ -4,20 +4,20 @@ const addModalCart = e => {
     const closeIcon = document.querySelector('#close-icon-cart');
     const cart = document.querySelector('#cart');
 
-    cartIcon.addEventListener('click', () => {
+    cartIcon?.addEventListener('click', () => {
         overlayModal.style.display = 'block';
         cart.classList.remove('hidden');
     });
 
-    closeIcon.addEventListener('click', () => {
+    closeIcon?.addEventListener('click', () => {
         overlayModal.style.display = 'none';
     });
 
-    overlayModal.addEventListener('click', () => {
+    overlayModal?.addEventListener('click', () => {
         overlayModal.style.display = 'none';
     });
 
-    cart.addEventListener('click', e => {
+    cart?.addEventListener('click', e => {
         e.stopPropagation();
     });
 };

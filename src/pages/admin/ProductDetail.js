@@ -1,13 +1,11 @@
+import axios from 'axios';
 import getCategoryName from '../../utilities/getCategoryName';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
 
 const ProductDetail = async ({ id }) => {
     const endpoint = `https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`;
-    const res = await fetch(endpoint);
-    const product = await res.json();
-
-    // const products = Object.entries(data);
-    // const product = products.find(product => product[0] === id);
+    const res = await axios.get(endpoint);
+    const product = await res.data;
 
     return `<main class="bg-gray-200">
     <div class="flex h-screen bg-gray-200 ml-[256px]">

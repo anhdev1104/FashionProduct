@@ -26,9 +26,7 @@ function Toast({ title = '', message = '', type = '', duration = 3000 }) {
         const icon = icons[type];
         const delay = (duration / 1000).toFixed(2);
 
-        toast.className = `toast toast--${type} flex items-center bg-white rounded-sm py-5 min-w-[400px] max-w-[450px] border-l-4 border-${
-            type === 'error' ? '[#dd4747]' : '#47d864'
-        }`;
+        toast.className = `toast toast--${type} flex items-center bg-white rounded-sm py-5 min-w-[400px] max-w-[450px] border-l-4`;
         toast.style.animation = `slideInLeft .3s ease, fadeOut linear 1s ${delay}s forwards`;
         toast.innerHTML = `
             <div class="toast__icon text-2xl px-4">
