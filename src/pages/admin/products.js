@@ -9,19 +9,17 @@ const Products = () => {
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        (async () => {
             const { data } = await getProducts();
             const dataReverse = Object.entries(data).reverse();
             setProduct(dataReverse);
-        };
-        fetchData();
+        })();
 
-        const fetchCate = async () => {
+        (async () => {
             const { data } = await getCategories();
             const category = Object.entries(data);
             setCategory(category);
-        };
-        fetchCate();
+        })();
     }, []);
 
     useEffect(() => {

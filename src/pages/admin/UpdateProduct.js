@@ -2,70 +2,72 @@ import { router, useEffect } from '../../utilities';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
 import { getProductDetail, updateProduct } from '../../api/product';
 import { getCategories } from '../../api/categories';
+import NotFound from '../NotFound';
 
 const UpdateProduct = async ({ id }) => {
-    const res = await getProductDetail(id);
-    const product = await res.data;
+    try {
+        const res = await getProductDetail(id);
+        const product = await res.data;
 
-    // api category
-    const { data } = await getCategories();
-    const dataCate = Object.entries(data);
+        // api category
+        const { data } = await getCategories();
+        const dataCate = Object.entries(data);
 
-    // handle update submit
-    useEffect(() => {
-        const form = document.querySelector('#formUpdate');
-        // selector
-        const nameProduct = document.querySelector("input[name='nameProduct']");
-        const imagesInput = document.querySelectorAll("input[type='file']");
-        const priceOrigin = document.querySelector('input[name="priceOrigin"]');
-        const price = document.querySelector('input[name="price"]');
-        const quantitySize = document.querySelectorAll('.quantitySize');
-        const description = document.querySelector('input[name="description"]');
-        const category = document.querySelector('#category');
-        const statusProduct = document.querySelector('#statusProduct');
+        // handle update submit
+        useEffect(() => {
+            const form = document.querySelector('#formUpdate');
+            // selector
+            const nameProduct = document.querySelector("input[name='nameProduct']");
+            const imagesInput = document.querySelectorAll("input[type='file']");
+            const priceOrigin = document.querySelector('input[name="priceOrigin"]');
+            const price = document.querySelector('input[name="price"]');
+            const quantitySize = document.querySelectorAll('.quantitySize');
+            const description = document.querySelector('input[name="description"]');
+            const category = document.querySelector('#category');
+            const statusProduct = document.querySelector('#statusProduct');
 
-        const images = [];
-        const size = [];
-        const handleUpdate = async e => {
-            e.preventDefault();
-            imagesInput.forEach(image => {
-                if (image.files[0]?.name === undefined) {
-                    const pathImage = image.previousElementSibling.src.split('/').pop();
-                    return images.push(pathImage);
-                } else {
-                    return images.push(image.files[0]?.name);
-                }
-            });
-            quantitySize.forEach(quantity => {
-                size.push({
-                    label: quantity.previousElementSibling.innerText,
-                    quantity: +quantity.value,
+            const images = [];
+            const size = [];
+            const handleUpdate = async e => {
+                e.preventDefault();
+                imagesInput.forEach(image => {
+                    if (image.files[0]?.name === undefined) {
+                        const pathImage = image.previousElementSibling.src.split('/').pop();
+                        return images.push(pathImage);
+                    } else {
+                        return images.push(image.files[0]?.name);
+                    }
                 });
-            });
+                quantitySize.forEach(quantity => {
+                    size.push({
+                        label: quantity.previousElementSibling.innerText,
+                        quantity: +quantity.value,
+                    });
+                });
 
-            const newProduct = {
-                name: nameProduct.value,
-                images,
-                priceOrigin: +priceOrigin.value,
-                price: +price.value,
-                description: description.value,
-                size,
-                categoryID: +category.value,
-                isActive: +statusProduct.value,
+                const newProduct = {
+                    name: nameProduct.value,
+                    images,
+                    priceOrigin: +priceOrigin.value,
+                    price: +price.value,
+                    description: description.value,
+                    size,
+                    categoryID: +category.value,
+                    isActive: +statusProduct.value,
+                };
+
+                await updateProduct(id, newProduct);
+
+                alert('Update thành công !');
+                router.navigate(`/admin/products/${id}`);
             };
 
-            await updateProduct(id, newProduct);
+            form.addEventListener('submit', handleUpdate);
 
-            alert('Update thành công !');
-            router.navigate(`/admin/products/${id}`);
-        };
+            return () => form.removeEventListener('submit', handleUpdate);
+        }, []);
 
-        form.addEventListener('submit', handleUpdate);
-
-        return () => form.removeEventListener('submit', handleUpdate);
-    }, []);
-
-    return `<main class="bg-gray-200">
+        return `<main class="bg-gray-200">
     <div class="flex h-screen bg-gray-200 ml-[256px]">
         ${SidebarAdmin()}
 
@@ -187,6 +189,10 @@ const UpdateProduct = async ({ id }) => {
         </div>
     </div>
 </main>`;
+    } catch (error) {
+        console.log(error);
+        return NotFound();
+    }
 };
 
 export default UpdateProduct;

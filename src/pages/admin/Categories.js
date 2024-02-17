@@ -7,12 +7,11 @@ const Categories = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        (async () => {
             const { data } = await getCategories();
             const dataReverse = Object.entries(data).reverse();
             setCategories(dataReverse);
-        };
-        fetchData();
+        })();
     }, []);
 
     useEffect(() => {
