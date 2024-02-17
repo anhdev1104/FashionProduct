@@ -1,16 +1,18 @@
-import axios from 'axios';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { getProductShowFashion } from '../api/product';
+import NotFound from './NotFound';
 
 const ShowFashion = async () => {
-    const response = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/showFashion.json');
-    const collection = await response.data;
-    return `
+    try {
+        const { data } = await getProductShowFashion();
+
+        return `
     <main>
     ${await Header()}
         <section class="w-full max-w-[1350px] mx-auto px-4 mt-[93px] select-none">
             <div class="w-full py-[30px] flex flex-wrap mx-auto">
-                ${collection
+                ${data
                     .map(
                         item => `
                 <div class="px-[10px] mb-5 max-w-[33.3333333333%] w-full flex-shrink-0 flex-grow-0">
@@ -26,6 +28,10 @@ const ShowFashion = async () => {
     </main>
     ${Footer()}
     `;
+    } catch (error) {
+        console.log(error);
+        return NotFound();
+    }
 };
 
 export default ShowFashion;

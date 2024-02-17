@@ -1,16 +1,15 @@
-import axios from 'axios';
 import { router, useEffect } from '../../utilities';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
+import { getProductDetail, updateProduct } from '../../api/product';
+import { getCategories } from '../../api/categories';
 
 const UpdateProduct = async ({ id }) => {
-    const endpoint = `https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`;
-    const res = await axios.get(endpoint);
+    const res = await getProductDetail(id);
     const product = await res.data;
 
     // api category
-    const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/categories.json');
+    const { data } = await getCategories();
     const dataCate = Object.entries(data);
-    console.log(dataCate);
 
     // handle update submit
     useEffect(() => {
@@ -55,7 +54,8 @@ const UpdateProduct = async ({ id }) => {
                 isActive: +statusProduct.value,
             };
 
-            await axios.patch(endpoint, newProduct);
+            await updateProduct(id, newProduct);
+
             alert('Update thành công !');
             router.navigate(`/admin/products/${id}`);
         };

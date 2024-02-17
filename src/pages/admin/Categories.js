@@ -1,15 +1,14 @@
+import { addCategories, deleteCategories, getCategories } from '../../api/categories.js';
 import Toast from '../../components/Toast.js';
 import { router, useEffect, useState } from '../../utilities';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
-import axios from 'axios';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
-    const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/categories.json';
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get(endpoint);
+            const { data } = await getCategories();
             const dataReverse = Object.entries(data).reverse();
             setCategories(dataReverse);
         };
@@ -42,7 +41,7 @@ const Categories = () => {
                 position: +position.value,
             };
 
-            await axios.post(endpoint, newCategories);
+            await addCategories(newCategories);
 
             Toast({
                 title: 'Thành công !',
@@ -72,8 +71,8 @@ const Categories = () => {
                 if (!isDelete) return;
 
                 const id = this.dataset.id;
-                console.log(id);
-                await axios.delete(`https://project-45d37-default-rtdb.firebaseio.com/categories/${id}.json`);
+
+                await deleteCategories(id);
 
                 Toast({
                     title: 'Đã xoá !',

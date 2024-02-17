@@ -1,12 +1,10 @@
-import axios from 'axios';
 import { router, useEffect } from '../../utilities';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
+import { getDetailCategories, updateCategories } from '../../api/categories';
 
 const UpdateCategories = async ({ id }) => {
-    const endpoint = `https://project-45d37-default-rtdb.firebaseio.com/categories/${id}.json`;
-    const res = await axios.get(endpoint);
+    const res = await getDetailCategories(id);
     const category = await res.data;
-    console.log(category);
 
     // handle update submit
     useEffect(() => {
@@ -23,7 +21,8 @@ const UpdateCategories = async ({ id }) => {
                 position: +position.value,
             };
 
-            await axios.patch(endpoint, newCategory);
+            await updateCategories(id, newCategory);
+
             alert('Update thành công !');
             router.navigate(`/admin/categories`);
         };

@@ -1,13 +1,14 @@
-import axios from 'axios';
 import getCategoryName from '../../utilities/getCategoryName';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
+import { getProductDetail } from '../../api/product';
+import NotFound from '../NotFound';
 
 const ProductDetail = async ({ id }) => {
-    const endpoint = `https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`;
-    const res = await axios.get(endpoint);
-    const product = await res.data;
+    try {
+        const res = await getProductDetail(id);
+        const product = await res.data;
 
-    return `<main class="bg-gray-200">
+        return `<main class="bg-gray-200">
     <div class="flex h-screen bg-gray-200 ml-[256px]">
         ${SidebarAdmin()}
 
@@ -90,6 +91,10 @@ const ProductDetail = async ({ id }) => {
         </div>
     </div>
 </main>`;
+    } catch (error) {
+        console.log(error);
+        return NotFound();
+    }
 };
 
 export default ProductDetail;

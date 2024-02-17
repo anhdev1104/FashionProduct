@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { handleAddImage, modalShow, toggleActiveSize } from '../scripts/detailEvent';
@@ -6,13 +5,12 @@ import scrollProducts from '../scripts/scrollProducts';
 import { useEffect } from '../utilities';
 import getCategoryName from '../utilities/getCategoryName';
 import NotFound from './NotFound';
+import { getProducts } from '../api/product';
 
-const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
 const ProductDetails = async ({ id }) => {
     try {
-        const res = await axios.get(endpoint);
-        const products = await res.data;
-        const convertProducts = Object.entries(products);
+        const { data } = await getProducts();
+        const convertProducts = Object.entries(data);
         const product = convertProducts.find(product => product[0] === id);
         const remainingQuantity = product[1].size.reduce((acc, curr) => acc + curr.quantity, 0);
         // lấy ra số lượng tối đa của sp random

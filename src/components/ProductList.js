@@ -1,9 +1,9 @@
 import axios from 'axios';
 import getCategoryName from '../utilities/getCategoryName';
+import { getProducts } from '../api/product';
 
 const ProductList = async targetCategory => {
-    const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
-    const { data } = await axios.get(endpoint);
+    const { data } = await getProducts();
     const convertData = Object.entries(data);
     const filterProducts = convertData.filter(item => item[1].categoryID === targetCategory).reverse();
     const maxProductsToShow = 6;

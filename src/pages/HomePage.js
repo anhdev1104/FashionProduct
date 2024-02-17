@@ -1,13 +1,13 @@
-import axios from 'axios';
 import Header from '../components/Header';
 import Slider from './layout/home/Slider';
 import Insta from './layout/home/Insta';
 import Footer from '../components/Footer';
 import NotFound from './NotFound';
+import { getProducts } from '../api/product';
 
 const HomePage = async () => {
     try {
-        const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/product.json');
+        const { data } = await getProducts();
         const convertData = Object.entries(data);
         const targetCategory = 1;
         const filterProducts = convertData.filter(item => item[1].categoryID === targetCategory).reverse();

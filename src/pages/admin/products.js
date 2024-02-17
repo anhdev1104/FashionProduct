@@ -1,23 +1,23 @@
+import { getCategories } from '../../api/categories.js';
+import { addProduct, deleteProduct, getProducts } from '../../api/product.js';
 import Toast from '../../components/Toast.js';
 import { router, useEffect, useState } from '../../utilities';
 import SidebarAdmin from '../layout/admin/SidebarAdmin';
-import axios from 'axios';
 
 const Products = () => {
     const [products, setProduct] = useState([]);
     const [category, setCategory] = useState([]);
-    const endpoint = 'https://project-45d37-default-rtdb.firebaseio.com/product.json';
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get(endpoint);
+            const { data } = await getProducts();
             const dataReverse = Object.entries(data).reverse();
             setProduct(dataReverse);
         };
         fetchData();
 
         const fetchCate = async () => {
-            const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/categories.json');
+            const { data } = await getCategories();
             const category = Object.entries(data);
             setCategory(category);
         };
@@ -96,7 +96,7 @@ const Products = () => {
                 isActive: +statusProduct.value,
             };
 
-            await axios.post(endpoint, newProduct);
+            await addProduct(newProduct);
 
             Toast({
                 title: 'Thành công !',
@@ -122,7 +122,7 @@ const Products = () => {
                 if (!isDelete) return;
 
                 const id = this.dataset.id;
-                await axios.delete(`https://project-45d37-default-rtdb.firebaseio.com/product/${id}.json`);
+                await deleteProduct(id);
 
                 Toast({
                     title: 'Đã xoá !',
