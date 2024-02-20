@@ -1,5 +1,6 @@
-import { useEffect } from '../utilities';
+import { router, useEffect } from '../utilities';
 import Validator from '../utilities/validate';
+import { addUser } from '../api/customer';
 
 const Register = () => {
     useEffect(() => {
@@ -22,15 +23,24 @@ const Register = () => {
                     'Mật khẩu nhập lại không chính xác !'
                 ),
             ],
+            onSubmit: async data => {
+                await addUser(data);
+                const userDataJSON = JSON.stringify(data);
+                localStorage.setItem('userData', userDataJSON);
+
+                setTimeout(() => {
+                    router.navigate('/');
+                }, 1000);
+            },
         });
     });
+
     return `<main class="flex w-full">
     <section class="w-[50%]">
         <img src="./src/assets/images/register.jpg" alt="" class="w-full h-full object-cover">
     </section>
     <section class="w-[50%] px-[50px] py-[25px]">
         <h1 class="text-[36px] text-second text-center mb-4">ĐĂNG KÍ TÀI KHOẢN</h1>
-
         <form action="" method="POST" enctype="multipart/form-data" id="formRegister">
             <div class="form-group mb-[25px]">
                 <label for="fullname" class="block cursor-pointer text-base">Họ và tên</label>
@@ -59,11 +69,11 @@ const Register = () => {
             </div>
             <div class="form-group mb-[25px]">
                 <label for="password_confirmation" class="block cursor-pointer text-base">Nhập lại mật khẩu</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="w-full py-3 outline-none bg-transparent border-b border-borderColor block text-base" placeholder="Xác nhận mật khẩu">
+                <input type="password" id="password_confirmation" class="w-full py-3 outline-none bg-transparent border-b border-borderColor block text-base" placeholder="Xác nhận mật khẩu">
                 <span class="form-message text-red-500 text-[13px] mt-2 block"></span>
             </div>
             </div>
-            <button name="register" class="w-full block mb-5 cursor-pointer py-3 outline-none border border-[#dbdbdb] bg-second text-primary font-medium text-base transition-all duration-400 ease-linear hover:opacity-80">ĐĂNG KÝ</button>
+            <button type="submit" class="w-full block mb-5 cursor-pointer py-3 outline-none border border-[#dbdbdb] bg-second text-primary font-medium text-base transition-all duration-400 ease-linear hover:opacity-80">ĐĂNG KÝ</button>
             <div class="flex gap-5 items-center justify-center">
             <a href="/login" class="block leading-5 font-light text-center hover:font-bold">Bạn đã có tài khoản ?</a>
             <a href="/" class="block leading-5 font-light text-center hover:font-bold">Quay lại trang chủ</a>

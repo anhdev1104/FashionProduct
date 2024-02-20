@@ -20,6 +20,7 @@ import ProductDetail from './pages/admin/ProductDetail.js';
 import UpdateProduct from './pages/admin/UpdateProduct.js';
 import Categories from './pages/admin/Categories.js';
 import UpdateCategories from './pages/admin/UpdateCategories.js';
+import Customer from './pages/admin/Customer.js';
 // import { getIdCategory } from './utilities/getCategoryName.js';
 
 const app = document.querySelector('#app');
@@ -42,7 +43,8 @@ router
     .on('/admin/products/:id', ({ data }) => render(() => ProductDetail(data), app))
     .on('/admin/updateproduct/:id', ({ data }) => render(() => UpdateProduct(data), app))
     .on('/admin/categories', () => render(Categories, app))
-    .on('/admin/categories/:id', ({ data }) => render(() => UpdateCategories(data), app));
+    .on('/admin/categories/:id', ({ data }) => render(() => UpdateCategories(data), app))
+    .on('/admin/customer', () => render(Customer, app));
 
 router.notFound(render(NotFound, app));
 router.resolve();

@@ -25,12 +25,12 @@ const SidebarAdmin = () => {
                     Quản lý đơn hàng</a>
             </li>
             <li class="px-6 py-4 text-gray-400 border-t border-gray-700">
-                <a href="#" class="block text-gray-200 hover:text-white">
+                <a href="/admin/customer" class="block text-gray-200 hover:text-white">
                     <i class="fa-solid fa-users pr-2"></i>
                     Quản lý khách hàng</a>
             </li>
             <li class="px-6 py-4 text-gray-400 border-t border-gray-700">
-                <a href="#" class="block text-gray-200 hover:text-white">
+                <a href="/" class="block text-gray-200 hover:text-white">
                     <i class="fa-solid fa-right-from-bracket pr-2"></i>
                     Đăng xuất
                 </a>

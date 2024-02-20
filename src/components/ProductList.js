@@ -1,4 +1,3 @@
-import axios from 'axios';
 import getCategoryName from '../utilities/getCategoryName';
 import { getProducts } from '../api/product';
 
@@ -6,8 +5,7 @@ const ProductList = async targetCategory => {
     const { data } = await getProducts();
     const convertData = Object.entries(data);
     const filterProducts = convertData.filter(item => item[1].categoryID === targetCategory).reverse();
-    const maxProductsToShow = 6;
-    const products = filterProducts.filter(product => product[1].isActive === 1).slice(0, maxProductsToShow);
+    const products = filterProducts.filter(product => product[1].isActive === 1);
     // lấy ra tên category của sp detail
     const category = await getCategoryName(targetCategory);
     // lấy số lượng item sp của danh mục
@@ -17,7 +15,7 @@ const ProductList = async targetCategory => {
 <div class="border-b border-borderColor mb-5 flex items-center justify-between pb-[5px]">
     <div class="gap-5 flex items-center">
         <p class="text-second font-bold uppercase">${category}</p>
-        <span class="font-light text-gray-500">(${totalItem} Item)</span>
+        <span class="font-light text-gray-500">(${totalItem} sản phẩm)</span>
     </div>
     <div class="cursor-pointer gap-3 font-bold items-center flex">
         <i class="fa-solid fa-list-ol"></i>

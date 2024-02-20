@@ -1,4 +1,5 @@
-import { useEffect } from '../utilities';
+import { getUsers } from '../api/customer';
+import { router, useEffect } from '../utilities';
 import Validator from '../utilities/validate';
 
 const LoginPage = () => {
@@ -9,6 +10,31 @@ const LoginPage = () => {
             formGroupSelector: '.form-group',
             errorSelector: '.form-message',
             rules: [Validator.isRequired('#email'), Validator.isEmail('#email'), Validator.minLength('#password', 8)],
+            onSubmit: async dataLogin => {
+                const { data } = await getUsers();
+                const users = Object.entries(data);
+                const isUser = users.find(
+                    user => user[1].email === dataLogin.email && user[1].password === dataLogin.password
+                );
+
+                if (isUser) {
+                    const userDataJSON = JSON.stringify(isUser[1]);
+                    localStorage.setItem('userData', userDataJSON);
+
+                    router.navigate('/');
+                } else {
+                    if (dataLogin.email === 'admin@gmail.com' && dataLogin.password === 'quantrivien') {
+                        router.navigate('/admin');
+                    } else {
+                        alert('Tài khoản không tồn tại !');
+
+                        document
+                            .querySelector('#formLogin')
+                            .querySelectorAll('input')
+                            .forEach(input => (input.value = ''));
+                    }
+                }
+            },
         });
     });
     return `<main class="flex w-full h-[100vh]">
@@ -33,7 +59,7 @@ const LoginPage = () => {
             <a href="/register" class="leading-5 font-light text-center hover:font-bold">Đăng ký tài khoản</a>
             <a href="/" class="leading-5 font-light text-center hover:font-bold">Quay lại trang chủ</a>
             </div>
-            <button type="submit" name="login" class="w-full block mb-[30px] cursor-pointer py-[15px] outline-none border border-[#dbdbdb] bg-second text-primary font-medium text-base transition-all duration-400 ease-linear hover:opacity-80">ĐĂNG NHẬP</button>
+            <button type="submit" class="w-full block mb-[30px] cursor-pointer py-[15px] outline-none border border-[#dbdbdb] bg-second text-primary font-medium text-base transition-all duration-400 ease-linear hover:opacity-80">ĐĂNG NHẬP</button>
         </form>
     </section>
 </main>`;

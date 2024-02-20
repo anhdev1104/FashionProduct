@@ -1,13 +1,28 @@
-import axios from 'axios';
 import addModalCart from '../scripts/addModalCart';
-import { useEffect } from '../utilities';
+import { router, useEffect } from '../utilities';
+import { getCategories } from '../api/categories';
 
 const Header = async () => {
+    // localStorage
+    const storedUserDataJSON = localStorage.getItem('userData');
+    let storedUserData = false;
+    // Kiểm tra xem dữ liệu có tồn tại hay không
+    if (storedUserDataJSON !== null) {
+        // Nếu dữ liệu tồn tại, chuyển đổi dữ liệu từ chuỗi JSON thành đối tượng JavaScript
+        storedUserData = JSON.parse(storedUserDataJSON);
+    }
+
     useEffect(() => {
+        // DOM Event
         addModalCart();
+        const btnSignOutUser = document.querySelector('.signout');
+        btnSignOutUser?.addEventListener('click', () => {
+            localStorage.removeItem('userData');
+            router.navigate('/');
+        });
     });
 
-    const { data } = await axios.get('https://project-45d37-default-rtdb.firebaseio.com/categories.json');
+    const { data } = await getCategories();
     const category = Object.entries(data);
     category.sort((a, b) => a[1].position - b[1].position);
 
@@ -21,7 +36,14 @@ const Header = async () => {
             <div class="flex justify-end items-center gap-8 mt-1">
                 <div class="flex items-center gap-2 hover:text-slate-500 hover:transition-all">
                     <i class="fa-regular fa-user"></i>
-                    <a href='/login'>Login</a>
+                    ${
+                        storedUserData
+                            ? `<div class="block-user cursor-pointer ml-1 pt-1 relative group">
+                            <span>${storedUserData.fullname}</span>
+                            <div class="signout absolute shadow-md bg-white top-full mt-3 left-1/2 min-w-[150px] -translate-x-1/2 text-center text-sm font-light py-2 px-5 hover:text-red-400 hover:font-bold hidden group-hover:block">Đăng xuất</div>
+                            </div>`
+                            : '<a href="/login">Login</a>'
+                    }
                 </div>
                 <span class="text-gray-300 text-lg">|</span>
                 <div class="cursor-pointer flex items-center gap-2 hover:text-slate-500 hover:transition-all"
@@ -36,7 +58,8 @@ const Header = async () => {
 
                     <div class="fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-40 z-20 items-center justify-center hidden overlay"
                         id="overlayCart">
-                        <div class="absolute top-11 right-[75px] p-[30px] bg-white transition-all duration-200 ease-in" id="cart">
+                        <div class="absolute top-11 right-[75px] p-[30px] bg-white transition-all duration-200 ease-in"
+                            id="cart">
                             <span class="uppercase text-base font-medium text-second">Giỏ hàng</span>
 
                             <div class="absolute top-0 right-0 text-2xl cursor-pointer py-[10px] px-6 text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]"
@@ -165,7 +188,7 @@ const Header = async () => {
                     `
                         )
                         .join('')}
-                    
+
                     <li>
                         <a href="/collection"
                             class="block py-4 transition-all hover:duration-500 border-[#f6f3e4] hover:border-black hover:border-b-2 border-b-2">BỘ
