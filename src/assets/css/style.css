@@ -259,4 +259,17 @@
         border-color: transparent transparent #fff transparent;
         z-index: 99999999;
     }
+
+    /* notifiCart */
+    .notifiCart::before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #dd4747;
+        z-index: 2;
+        top: 0;
+        right: -6px;
+    }
 }

@@ -13,8 +13,7 @@ const Header = async () => {
     }
 
     // localStorage get Cart
-    const carts = JSON.parse(localStorage.getItem('cart'));
-    console.log(carts);
+    const carts = JSON.parse(localStorage.getItem('cart')) || [];
 
     useEffect(() => {
         // DOM Event
@@ -24,12 +23,28 @@ const Header = async () => {
             localStorage.removeItem('userData');
             router.navigate('/');
         });
+
+        // remove cart
+        const btnRemoveCartItems = document.querySelectorAll('.close-icon');
+        btnRemoveCartItems.forEach(btn =>
+            btn.addEventListener('click', function () {
+                const cartIndex = +this.dataset.index;
+                if (!isNaN(cartIndex)) {
+                    let carts = JSON.parse(localStorage.getItem('cart')) || [];
+                    carts.splice(cartIndex, 1);
+                    localStorage.setItem('cart', JSON.stringify(carts));
+                    const isRemoveCart = confirm('Bạn muốn xoá sản phẩm này khỏi giỏ hàng ?');
+                    if (!isRemoveCart) return;
+                    window.location.reload();
+                }
+            })
+        );
     });
 
     const { data } = await getCategories();
     const category = Object.entries(data);
     category.sort((a, b) => a[1].position - b[1].position);
-
+    let totalPriceCart = 0;
     return `<header
     class="w-full bg-primary border-b border-solid border-[#e3ddbb] py-[1px] fixed top-0 left-0 right-0 z-10">
     <section class="w-full max-w-[1350px] mx-auto px-4 flex justify-between items-center gap-5">
@@ -58,7 +73,7 @@ const Header = async () => {
                     <span>Tìm kiếm</span>
                 </div>
                 <span class="text-gray-300 text-lg">|</span>
-                <div class="text-xl transition-all relative" title="giỏ hàng">
+                <div class="${carts.length > 0 ? 'notifiCart' : ''} text-xl transition-all relative" title="giỏ hàng">
                     <i class="fa-solid fa-cart-shopping cursor-pointer hover:text-slate-500 hover:transition-all duration-700"
                         id="cartIcon"></i>
 
@@ -74,51 +89,56 @@ const Header = async () => {
                             </div>
 
                             <ul class="mx-[-10px] mt-1 mb-3 overflow-y-auto max-h-[40vh] pr-3 cart-scroll">
-                                ${carts
-                                    ?.map(
-                                        cart => `
-                                <li class="flex pb-2 pt-[10px] border-b border-borderColor ">
-                                    <a href="" class="block w-[110px] px-[10px] select-none">
-                                        <img src="./src/assets/images/${cart.images}" alt="" />
-                                    </a>
-                                    <div class="px-[10px] flex flex-col justify-between">
-                                        <div class="flex mb-3 justify-between items-center">
-                                            <h3 class="font-light text-sm pr-5 uppercase">${cart.name}</h3>
-                                            <div class="cursor-pointer text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]"
-                                                id="close-icon">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex font-light text-[13px]">
-                                            <span class="min-w-[90px]">Size:</span>
-                                            <span>${cart.size}</span>
-                                        </div>
-
-                                        <div class="flex items-center font-light text-[13px]">
-                                            <label class="min-w-[90px]">Số lượng:</label>
-                                            <span class="flex-1">${cart.quantity}</span>
-                                            <span class="float-right">${cart.price
-                                                .toString()
-                                                .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                `
-                                    )
-                                    .join('')}
-                                
-
-
-                                
+                                ${
+                                    carts.length === 0
+                                        ? '<span class="text-sm text-center font-light ml-5">Chưa có sản phẩm nào được thêm.</span>'
+                                        : carts
+                                              ?.map((cart, index) => {
+                                                  const totalPriceQuantityItem = cart.price * cart.quantity;
+                                                  totalPriceCart += totalPriceQuantityItem;
+                                                  return `
+                                                    <li class="flex justify-between pb-2 pt-[10px] border-b border-borderColor ">
+                                                        <a href="" class="block w-[110px] px-[10px] select-none">
+                                                            <img src="../src/assets/images/${cart.images}" alt="" />
+                                                        </a>
+                                                        <div class="px-[10px] flex flex-col justify-between flex-1">
+                                                            <div class="flex mb-3 justify-between items-center">
+                                                                <h3 class="font-light text-sm pr-5 uppercase">${
+                                                                    cart.name
+                                                                }</h3>
+                                                                <div data-index="${index}" class="close-icon cursor-pointer text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]">
+                                                                    <i class="fa-solid fa-xmark"></i>
+                                                                </div>
+                                                            </div>
+                    
+                                                            <div class="flex font-light text-[13px]">
+                                                                <span class="min-w-[90px]">Size:</span>
+                                                                <span>${cart.size}</span>
+                                                            </div>
+                    
+                                                            <div class="flex items-center font-light text-[13px]">
+                                                                <label class="min-w-[90px]">Số lượng:</label>
+                                                                <span class="flex-1">${cart.quantity}</span>
+                                                                <span class="float-right">${cart.price
+                                                                    .toString()
+                                                                    .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    `;
+                                              })
+                                              .join('')
+                                }
                             </ul>
                             <div class="flex items-center justify-between text-sm font-light mb-3">
                                 <span>Tổng tiền tạm tính</span>
-                                <span>5.996.000 VND</span>
+                                <span>${totalPriceCart.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} VND</span>
                             </div>
                             <div class="flex items-center justify-between text-sm font-light">
                                 <span class="text-[15px] font-bold uppercase">Tổng hoá đơn</span>
-                                <span class="font-medium">5.996.000 VND</span>
+                                <span class="font-medium">${totalPriceCart
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, '.')} VND</span>
                             </div>
                             <a href="/pay"
                                 class="text-sm mt-4 block bg-[#444444] hover:opacity-80 transition-all duration-200 ease-linear text-white text-center py-2 font-medium">ĐI
