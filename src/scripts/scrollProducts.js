@@ -15,7 +15,7 @@ const scrollProducts = () => {
             listFavorite.scrollLeft += itemWidth;
         }, 200);
     }
-    btnNext.addEventListener('click', handleNextClick);
+    btnNext?.addEventListener('click', handleNextClick);
 
     function handlePrevClick() {
         if (debounceTimeout) {
@@ -26,9 +26,9 @@ const scrollProducts = () => {
             listFavorite.scrollLeft -= itemWidth;
         }, 200);
     }
-    btnPrev.addEventListener('click', handlePrevClick);
+    btnPrev?.addEventListener('click', handlePrevClick);
 
-    listFavorite.addEventListener('wheel', function (e) {
+    listFavorite?.addEventListener('wheel', function (e) {
         e.preventDefault();
         const delta = e.deltaY * 3.3;
         this.scrollLeft += delta;

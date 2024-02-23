@@ -2,7 +2,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { handleAddImage, modalShow, toggleActiveSize } from '../scripts/detailEvent';
 import scrollProducts from '../scripts/scrollProducts';
-import { useEffect } from '../utilities';
+import { router, useEffect } from '../utilities';
 import getCategoryName from '../utilities/getCategoryName';
 import NotFound from './NotFound';
 import { getProducts } from '../api/product';
@@ -26,12 +26,63 @@ const ProductDetails = async ({ id }) => {
             modalShow();
             toggleActiveSize();
             scrollProducts();
+
+            const increment = document.querySelector('#increment');
+            const decrement = document.querySelector('#decrement');
+            const quantityCart = document.querySelector('#quantityCart');
+
+            let count = 1;
+
+            increment.addEventListener('click', () => {
+                if (count >= 10) return;
+                quantityCart.textContent = ++count;
+            });
+
+            decrement.addEventListener('click', () => {
+                if (count <= 1) return;
+                quantityCart.textContent = --count;
+            });
         });
+
+        // order
+        useEffect(() => {
+            const addCartForm = document.querySelector('#addCartForm');
+            const sizeCart = document.querySelector('#innerSize');
+            const quantityCart = document.querySelector('#quantityCart');
+
+            function addToCart(e) {
+                e.preventDefault();
+
+                if (sizeCart.textContent === '') return alert('Vui lòng chọn size !');
+
+                const productCart = {
+                    name: product[1].name,
+                    images: product[1].images[0],
+                    price: product[1].price,
+                    size: sizeCart.textContent,
+                    quantity: +quantityCart.textContent,
+                };
+
+                if (localStorage.getItem('cart') === null) {
+                    const cart = [];
+                    cart.push(productCart);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                } else {
+                    const cart = JSON.parse(localStorage.getItem('cart'));
+                    cart.push(productCart);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
+
+                router.navigate('/');
+            }
+
+            addCartForm.addEventListener('submit', addToCart);
+        }, []);
         return `
 ${await Header()}
 <main class="w-full max-w-[1350px] mx-auto px-4">
     <section class="mt-[110px]">
-        <form action="" method="POST">
+        <form action="" method="POST" id="addCartForm">
             <div class="flex items-center font-light uppercase">
                 <a href="/" class="transition-all ease-in duration-200 hover:text-[#a9a9a9]">TRANG CHỦ</a>
                 <span class="text-gray-300 mx-2 text-lg">/</span>
@@ -61,14 +112,14 @@ ${await Header()}
                     </div>
                 </div>
                 <div class="w-[50%]">
-                    <h2 class="font-medium mb-1 text-xl">${product[1].name}</h2>
+                    <h2 class="font-medium mb-1 text-xl" id="nameProduct">${product[1].name}</h2>
                     <span class="font-light text-sm">Số lượng kho còn: <b
                             class="font-bold text-base">${remainingQuantity}</b></span>
                     <div class="mb-5 flex items-center gap-[18px] mt-3">
-                        <span class="font-bold text-lg">${product[1].price
+                        <span class="font-bold text-lg" id="price">${product[1].price
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
-                        <span class="font-light text-[#a9a9a9] line-through">${product[1].priceOrigin
+                        <span class="font-light text-[#a9a9a9] line-through" id="priceOrigin">${product[1].priceOrigin
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
                     </div>
@@ -78,15 +129,15 @@ ${await Header()}
                     </p>
                     <div class="flex items-center justify-between">
                         <div class="flex gap-5">
-                            <div
-                                class="cursor-pointer flex items-center justify-center w-10 h-10 border border-[#e3ddbb] bg-white font-light item-option">
-                                S</div>
-                            <div
-                                class="cursor-pointer flex items-center justify-center w-10 h-10 border border-[#e3ddbb] bg-white font-light item-option">
-                                M</div>
-                            <div
-                                class="cursor-pointer flex items-center justify-center w-10 h-10 border border-[#e3ddbb] bg-white font-light item-option">
-                                L</div>
+                            ${product[1].size
+                                .map(
+                                    size => `
+                                <div
+                                    class="cursor-pointer flex items-center justify-center w-10 h-10 border border-[#e3ddbb] bg-white font-light item-option">${size.label}</div>
+                            `
+                                )
+                                .join('')}
+                            
                         </div>
                         <div class="cursor-pointer font-light text-[#007ff0] text-sm hover:underline" id="modal-size">
                             Tìm đúng kích thước →
@@ -103,6 +154,11 @@ ${await Header()}
 
                     </div>
                     <div class="flex justify-between items-center mt-[25px] pb-[30px] border-b border-borderColor">
+                        <div class="flex items-center border border-primary bg-white">
+                            <span id="decrement" class="w-[50px] h-[50px] text-sm text-[#999] flex justify-center items-center cursor-pointer"><i class="fa fa-minus"></i></span>
+                            <span class="w-[30px] h-[50px] leading-[50px] text-lg text-center text-second bg-transparent" type="text" disabled id="quantityCart">1</span>
+                            <span id="increment" class="w-[50px] h-[50px] text-sm text-[#999] flex justify-center items-center cursor-pointer"><i class="fa fa-plus"></i></span>
+                        </div>
                         <input type="submit" name="addproductdetails"
                             class="max-w-[380px] w-full h-50px leading-[50px] block text-white cursor-pointer outline-none border-none bg-second font-light text-center transition-all ease-in-out duration-200 hover:font-bold hover:bg-[#a9a9a9]"
                             value="THÊM VÀO GIỎ HÀNG">

@@ -3,7 +3,7 @@ export function handleAddImage() {
     const listImages = document.querySelectorAll('.details-item-img');
     const mainImage = document.querySelector('#details-img');
 
-    listImages[0].classList.add('border-[rgb(189,24,28)]');
+    listImages[0]?.classList.add('border-[rgb(189,24,28)]');
     [...listImages].forEach(item =>
         item.addEventListener('click', function () {
             [...listImages].forEach(item => item.classList.remove('border-[rgb(189,24,28)]'));
@@ -20,19 +20,19 @@ export function modalShow() {
     const closeIconModal = document.querySelector('.close-icon');
     const boxModal = document.querySelector('#box-size');
 
-    modalSize.addEventListener('click', () => {
+    modalSize?.addEventListener('click', () => {
         overlayModal.style.display = 'flex';
     });
 
-    closeIconModal.addEventListener('click', () => {
+    closeIconModal?.addEventListener('click', () => {
         overlayModal.style.display = 'none';
     });
 
-    overlayModal.addEventListener('click', () => {
+    overlayModal?.addEventListener('click', () => {
         overlayModal.style.display = 'none';
     });
 
-    boxModal.addEventListener('click', e => {
+    boxModal?.addEventListener('click', e => {
         e.stopPropagation();
     });
 }

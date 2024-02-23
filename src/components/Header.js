@@ -3,7 +3,7 @@ import { router, useEffect } from '../utilities';
 import { getCategories } from '../api/categories';
 
 const Header = async () => {
-    // localStorage
+    // localStorage get name USER
     const storedUserDataJSON = localStorage.getItem('userData');
     let storedUserData = false;
     // Kiểm tra xem dữ liệu có tồn tại hay không
@@ -11,6 +11,10 @@ const Header = async () => {
         // Nếu dữ liệu tồn tại, chuyển đổi dữ liệu từ chuỗi JSON thành đối tượng JavaScript
         storedUserData = JSON.parse(storedUserDataJSON);
     }
+
+    // localStorage get Cart
+    const carts = JSON.parse(localStorage.getItem('cart'));
+    console.log(carts);
 
     useEffect(() => {
         // DOM Event
@@ -39,9 +43,11 @@ const Header = async () => {
                     ${
                         storedUserData
                             ? `<div class="block-user cursor-pointer ml-1 pt-1 relative group">
-                            <span>${storedUserData.fullname}</span>
-                            <div class="signout absolute shadow-md bg-white top-full mt-3 left-1/2 min-w-[150px] -translate-x-1/2 text-center text-sm font-light py-2 px-5 hover:text-red-400 hover:font-bold hidden group-hover:block">Đăng xuất</div>
-                            </div>`
+                        <span>${storedUserData.fullname}</span>
+                        <div
+                            class="signout absolute shadow-md bg-white top-full mt-3 left-1/2 min-w-[150px] -translate-x-1/2 text-center text-sm font-light py-2 px-5 hover:text-red-400 hover:font-bold hidden group-hover:block">
+                            Đăng xuất</div>
+                    </div>`
                             : '<a href="/login">Login</a>'
                     }
                 </div>
@@ -68,98 +74,43 @@ const Header = async () => {
                             </div>
 
                             <ul class="mx-[-10px] mt-1 mb-3 overflow-y-auto max-h-[40vh] pr-3 cart-scroll">
-                                <li class="flex pb-2 pt-[10px] border-b border-borderColor">
+                                ${carts
+                                    ?.map(
+                                        cart => `
+                                <li class="flex pb-2 pt-[10px] border-b border-borderColor ">
                                     <a href="" class="block w-[110px] px-[10px] select-none">
-                                        <img src="http://localhost:5173/src/assets/images/product5-2.jpg" alt="" />
+                                        <img src="./src/assets/images/${cart.images}" alt="" />
                                     </a>
-                                    <div class="px-[10px]">
-                                        <div class="flex mb-3">
-                                            <h3 class="font-light text-sm pr-5">WHITE POPPY OFF-SHOULDER MIDI VOILE
-                                                DRESS
-                                            </h3>
+                                    <div class="px-[10px] flex flex-col justify-between">
+                                        <div class="flex mb-3 justify-between items-center">
+                                            <h3 class="font-light text-sm pr-5 uppercase">${cart.name}</h3>
                                             <div class="cursor-pointer text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]"
                                                 id="close-icon">
                                                 <i class="fa-solid fa-xmark"></i>
                                             </div>
                                         </div>
-                                        <div class="flex font-light text-[13px]">
-                                            <span class="min-w-[90px]">Màu:</span>
-                                            <span>Vàng</span>
-                                        </div>
+
                                         <div class="flex font-light text-[13px]">
                                             <span class="min-w-[90px]">Size:</span>
-                                            <span>L</span>
+                                            <span>${cart.size}</span>
                                         </div>
 
                                         <div class="flex items-center font-light text-[13px]">
-                                            <label class="min-w-[90px]">Số lượng</label>
-                                            <span class="flex-1"> 1 </span>
-                                            <span class="float-right">2.496.000 VND</span>
+                                            <label class="min-w-[90px]">Số lượng:</label>
+                                            <span class="flex-1">${cart.quantity}</span>
+                                            <span class="float-right">${cart.price
+                                                .toString()
+                                                .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
                                         </div>
                                     </div>
                                 </li>
+                                `
+                                    )
+                                    .join('')}
+                                
 
-                                <li class="flex pb-2 pt-[10px] border-b border-borderColor">
-                                    <a href="" class="block w-[110px] px-[10px]">
-                                        <img src="http://localhost:5173/src/assets/images/product5-2.jpg" alt="" />
-                                    </a>
-                                    <div class="px-[10px]">
-                                        <div class="flex mb-3">
-                                            <h3 class="font-light text-sm pr-5">WHITE POPPY OFF-SHOULDER MIDI VOILE
-                                                DRESS
-                                            </h3>
-                                            <div class="cursor-pointer text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]"
-                                                id="close-icon">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex font-light text-[13px]">
-                                            <span class="min-w-[90px]">Màu:</span>
-                                            <span>Vàng</span>
-                                        </div>
-                                        <div class="flex font-light text-[13px]">
-                                            <span class="min-w-[90px]">Size:</span>
-                                            <span>L</span>
-                                        </div>
 
-                                        <div class="flex items-center font-light text-[13px]">
-                                            <label class="min-w-[90px]">Số lượng</label>
-                                            <span class="flex-1"> 1 </span>
-                                            <span class="float-right">2.496.000 VND</span>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="flex pb-2 pt-[10px] border-b border-borderColor">
-                                    <a href="" class="block w-[110px] px-[10px]">
-                                        <img src="http://localhost:5173/src/assets/images/product5-2.jpg" alt="" />
-                                    </a>
-                                    <div class="px-[10px]">
-                                        <div class="flex mb-3">
-                                            <h3 class="font-light text-sm pr-5">WHITE POPPY OFF-SHOULDER MIDI VOILE
-                                                DRESS
-                                            </h3>
-                                            <div class="cursor-pointer text-gray-500 transition-all ease-in duration-200 hover:text-[#a9a9a9]"
-                                                id="close-icon">
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex font-light text-[13px]">
-                                            <span class="min-w-[90px]">Màu:</span>
-                                            <span>Vàng</span>
-                                        </div>
-                                        <div class="flex font-light text-[13px]">
-                                            <span class="min-w-[90px]">Size:</span>
-                                            <span>L</span>
-                                        </div>
-
-                                        <div class="flex items-center font-light text-[13px]">
-                                            <label class="min-w-[90px]">Số lượng</label>
-                                            <span class="flex-1"> 1 </span>
-                                            <span class="float-right">2.496.000 VND</span>
-                                        </div>
-                                    </div>
-                                </li>
+                                
                             </ul>
                             <div class="flex items-center justify-between text-sm font-light mb-3">
                                 <span>Tổng tiền tạm tính</span>
